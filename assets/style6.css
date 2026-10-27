@@ -1,0 +1,881 @@
+/* ============================================================================
+   style6.css —— 全球落点国家排行（可调权重 / 双时点 / 12 国详情）
+   加载顺序：… → style5.css → style6.css
+   全部沿用既有设计令牌，深浅色自动继承
+   ============================================================================ */
+
+/* ==========================================================================
+   一、结论卡
+   ========================================================================== */
+.gl-hero-in {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 140% at 100% 0%, var(--brand-soft) 0%, transparent 55%),
+    var(--panel);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+}
+.gl-hero-h {
+  font-size: 12px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 10px;
+}
+.gl-hero-body p {
+  margin: 0 0 9px; font-size: 13.2px; line-height: 1.82; color: var(--ink-2);
+}
+.gl-hero-body p:last-child { margin-bottom: 0; }
+.gl-hero-body em { font-style: normal; font-weight: 800; color: var(--brand); }
+.gl-hero-body b { font-weight: 800; color: var(--ink); }
+
+.gl-hero-kpi {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line-2);
+}
+.gl-kpi {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+}
+.gl-kpi span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.gl-kpi b { display: block; font-size: 14px; font-weight: 850; color: var(--ink); }
+.gl-kpi i {
+  display: inline-block; margin-top: 5px; font-style: normal;
+  font-size: 12px; font-weight: 850; color: var(--brand);
+  background: var(--brand-soft); border-radius: 999px; padding: 1px 8px;
+}
+.gl-kpi.warn { background: var(--warn-soft); border-color: transparent; }
+.gl-kpi.warn b { color: var(--warn); }
+.gl-kpi.warn i { background: rgba(217, 119, 6, .14); color: var(--warn); }
+
+/* ==========================================================================
+   二、权重面板
+   ========================================================================== */
+.gl-presets {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.gl-pbtn {
+  font: inherit; font-size: 12.2px; font-weight: 750;
+  padding: 6px 13px; border-radius: 999px; cursor: pointer;
+  background: var(--panel-2); color: var(--ink-2);
+  border: 1px solid var(--line-2);
+  transition: background .18s, color .18s, border-color .18s, transform .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.gl-pbtn:hover { border-color: var(--brand); color: var(--brand); }
+.gl-pbtn:active { transform: scale(.97); }
+.gl-pbtn.on {
+  background: var(--brand); color: #fff; border-color: var(--brand);
+  box-shadow: 0 2px 10px rgba(29, 78, 216, .22);
+}
+.gl-pnote { font-size: 11.6px; color: var(--muted); margin-left: auto; }
+
+.gl-weights {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin-bottom: 16px;
+}
+.gl-w {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 10px 12px 9px;
+}
+.gl-w-h { display: flex; align-items: baseline; gap: 8px; margin-bottom: 7px; }
+.gl-w-h b { font-size: 12.6px; font-weight: 800; color: var(--ink); }
+.gl-w-v {
+  margin-left: auto; font-size: 12px; font-weight: 850; color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+.gl-w-d { font-size: 11.2px; line-height: 1.62; color: var(--muted); margin-top: 6px; }
+
+.gl-w input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; border-radius: 999px; outline: none;
+  background: var(--line-2); cursor: pointer;
+}
+.gl-w input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--brand); border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, .3);
+  cursor: grab;
+}
+.gl-w input[type="range"]::-moz-range-thumb {
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--brand); border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, .3);
+  cursor: grab;
+}
+.gl-w input[type="range"]:focus-visible { box-shadow: 0 0 0 3px var(--brand-soft); }
+
+/* 时点切换 */
+.gl-tabs { border-top: 1px dashed var(--line-2); padding-top: 14px; }
+.gl-tabsw {
+  display: inline-flex; padding: 3px; gap: 3px;
+  background: var(--bg-soft); border-radius: 999px;
+}
+.gl-tab {
+  font: inherit; font-size: 12.4px; font-weight: 750;
+  padding: 6px 16px; border-radius: 999px; border: 0; cursor: pointer;
+  background: transparent; color: var(--muted);
+  transition: background .18s, color .18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.gl-tab.on { background: var(--panel); color: var(--brand); box-shadow: var(--shadow-sm); }
+.gl-tabnote { font-size: 11.6px; color: var(--muted); margin-top: 9px; line-height: 1.6; }
+
+/* 汇总 */
+.gl-sum {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line-2);
+}
+.gl-sum-li { font-size: 12px; }
+.gl-sum-li span { display: block; color: var(--muted); font-size: 11px; margin-bottom: 3px; }
+.gl-sum-li b { display: block; font-size: 13px; color: var(--ink); font-weight: 850; }
+.gl-sum-li em { display: block; font-style: normal; font-size: 11px; color: var(--muted-2); margin-top: 2px; }
+
+/* ==========================================================================
+   三、排行榜
+   ========================================================================== */
+.gl-rank { display: flex; flex-direction: column; gap: 8px; }
+
+.gl-row {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.gl-row:hover { border-color: var(--line-2); box-shadow: var(--shadow-sm); }
+.gl-row.top { border-left: 3px solid var(--brand); }
+.gl-row.open { border-color: var(--brand); box-shadow: 0 4px 18px rgba(29, 78, 216, .1); }
+
+.gl-head {
+  width: 100%; display: grid; align-items: center; gap: 8px;
+  grid-template-columns: 36px 30px minmax(96px, 1.05fr) 84px minmax(0, 1.35fr) 56px 16px;
+  padding: 11px 12px;
+  background: none; border: 0; cursor: pointer;
+  font: inherit; color: inherit; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+.gl-head:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+
+.gl-rk {
+  font-size: 15px; font-weight: 850; color: var(--muted-2);
+  text-align: center; font-variant-numeric: tabular-nums;
+}
+.gl-row.top .gl-rk { font-size: 17px; }
+.gl-fl { font-size: 19px; line-height: 1; text-align: center; }
+.gl-nm { min-width: 0; }
+.gl-nm b { display: block; font-size: 13.6px; font-weight: 850; color: var(--ink); }
+.gl-nm i {
+  display: block; font-style: normal; font-size: 10.8px; color: var(--muted-2);
+  letter-spacing: .4px; text-transform: uppercase; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+/* 六维小条 */
+.gl-bars { display: flex; align-items: flex-end; gap: 3px; height: 26px; }
+.gl-b {
+  flex: 1; height: 100%; background: var(--bg-soft);
+  border-radius: 2px; position: relative; overflow: hidden;
+}
+.gl-b i {
+  position: absolute; left: 0; bottom: 0; width: 100%;
+  background: linear-gradient(180deg, var(--brand), var(--brand-2));
+  border-radius: 2px; transition: height .4s var(--m4-ease, ease);
+}
+.gl-row.top .gl-b i { background: linear-gradient(180deg, var(--brand), #6d8ff5); }
+
+.gl-tg {
+  font-size: 11px; color: var(--muted); line-height: 1.45;
+  display: flex; flex-direction: column; gap: 3px; align-items: flex-start;
+}
+.gl-d {
+  font-size: 10px; font-weight: 800; padding: 1px 6px; border-radius: 999px;
+}
+.gl-d.up { background: var(--ok-soft); color: var(--ok); }
+.gl-d.down { background: var(--warn-soft); color: var(--warn); }
+
+.gl-sc {
+  font-size: 16px; font-weight: 900; color: var(--brand);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.gl-row.top .gl-sc { color: var(--brand); }
+.gl-row:not(.top) .gl-sc { color: var(--ink-2); }
+
+.gl-cv { font-size: 9px; color: var(--muted-2); text-align: center; transition: transform .22s; }
+.gl-row.open .gl-cv { transform: rotate(180deg); }
+
+.gl-body {
+  border-top: 1px solid var(--line);
+  background: var(--panel-2);
+  padding: 16px 14px 18px;
+}
+
+/* ==========================================================================
+   四、详情
+   ========================================================================== */
+.gl-dt-lead {
+  font-size: 13px; line-height: 1.82; color: var(--ink-2);
+  background: var(--panel); border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 11px 14px; margin-bottom: 16px;
+}
+
+.gl-dt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.gl-dt-col h5, .gl-dt-3 h5 {
+  font-size: 12.2px; font-weight: 850; color: var(--ink);
+  margin: 0 0 9px; letter-spacing: .2px;
+}
+.gl-dt-col h5:not(:first-child) { margin-top: 18px; }
+
+.gl-law {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 11px 13px;
+}
+.gl-law b { display: block; font-size: 12.4px; color: var(--brand); margin-bottom: 5px; word-break: break-word; }
+.gl-law p { margin: 0; font-size: 12.2px; line-height: 1.72; color: var(--muted); }
+
+/* 硬门槛表 */
+.gl-hd { font-size: 12.2px; }
+.gl-hd thead { display: none; }
+.gl-hd td { padding: 9px 10px; vertical-align: top; }
+.gl-hd .gl-hd-k { width: 34%; font-weight: 700; color: var(--ink); }
+.gl-hd .gl-hd-k .gl-st {
+  display: inline-block; margin-top: 4px; font-size: 9.6px; font-weight: 700;
+  padding: 1px 6px; border-radius: 999px; letter-spacing: .2px;
+  white-space: nowrap; font-weight: 700;
+}
+.gl-st.ok { background: var(--ok-soft); color: var(--ok); }
+.gl-st.warn { background: var(--warn-soft); color: var(--warn); }
+.gl-st.gray { background: var(--bg-soft); color: var(--muted); }
+.gl-hd .gl-hd-v { width: 30%; }
+.gl-hd .gl-hd-v b { color: var(--brand); font-size: 12.6px; word-break: break-word; }
+.gl-hd .gl-hd-n { color: var(--muted); line-height: 1.68; }
+
+/* 清单 */
+.gl-req { list-style: none; margin: 0; padding: 0; }
+.gl-req li {
+  position: relative; padding-left: 20px; margin-bottom: 7px;
+  font-size: 12.4px; line-height: 1.68; color: var(--ink-2);
+}
+.gl-req li::before {
+  content: "▸"; position: absolute; left: 4px; top: -1px;
+  color: var(--brand); font-weight: 900;
+}
+
+.gl-steps { margin: 0; padding-left: 0; list-style: none; counter-reset: gls; }
+.gl-steps li {
+  counter-increment: gls; position: relative;
+  padding-left: 28px; margin-bottom: 8px;
+  font-size: 12.4px; line-height: 1.7; color: var(--ink-2);
+}
+.gl-steps li::before {
+  content: counter(gls);
+  position: absolute; left: 0; top: 1px;
+  width: 19px; height: 19px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 10.5px; font-weight: 850;
+  background: var(--brand-soft); color: var(--brand);
+}
+
+/* 底部三块 */
+.gl-dt-foot {
+  display: grid; grid-template-columns: 1fr 1.35fr 1.35fr; gap: 10px;
+  margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line-2);
+}
+.gl-box {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 11px 13px;
+}
+.gl-box b { display: block; font-size: 11.6px; font-weight: 850; color: var(--ink); margin-bottom: 6px; }
+.gl-box .gl-big { display: block; font-size: 16px; font-weight: 900; color: var(--ok); }
+.gl-box em { display: block; font-style: normal; font-size: 11px; line-height: 1.62; color: var(--muted); margin-top: 5px; }
+.gl-box p { margin: 0; font-size: 12px; line-height: 1.7; color: var(--ink-2); }
+.gl-box.bad { background: var(--danger-soft); border-color: transparent; }
+.gl-box.bad b { color: var(--danger); }
+.gl-box.good { background: var(--ok-soft); border-color: transparent; }
+.gl-box.good b { color: var(--ok); }
+
+/* 六维得分 */
+.gl-dt-3 {
+  margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line-2);
+}
+.gl-dim {
+  display: grid; grid-template-columns: 74px 1fr 26px;
+  align-items: center; gap: 10px; margin-bottom: 7px;
+}
+.gl-dim span { font-size: 11.6px; color: var(--muted); }
+.gl-dim i { height: 5px; background: var(--bg-soft); border-radius: 999px; overflow: hidden; display: block; }
+.gl-dim i b { display: block; height: 100%; background: linear-gradient(90deg, var(--brand-2), var(--brand)); border-radius: 999px; }
+.gl-dim em {
+  font-style: normal; font-size: 11.6px; font-weight: 850; color: var(--ink-2);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.gl-src {
+  margin-top: 10px; font-size: 10.8px; color: var(--muted-2);
+  line-height: 1.6; border-top: 1px solid var(--line); padding-top: 8px;
+}
+
+/* ==========================================================================
+   五、元宝核对表
+   ========================================================================== */
+.gl-checks { display: flex; flex-direction: column; gap: 10px; }
+.gl-chk {
+  border: 1px solid var(--line); border-left: 3px solid var(--line-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--panel); padding: 12px 14px;
+}
+.gl-chk.bad { border-left-color: var(--danger); }
+.gl-chk.warn { border-left-color: var(--warn); }
+.gl-chk.ok { border-left-color: var(--ok); }
+
+.gl-chk-h { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 9px; }
+.gl-chk-n {
+  flex: none; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 10.5px; font-weight: 850;
+  background: var(--bg-soft); color: var(--muted);
+}
+.gl-chk-h b { flex: 1; font-size: 12.8px; font-weight: 800; color: var(--ink); line-height: 1.6; }
+.gl-chk-t {
+  flex: none; font-size: 10.4px; font-weight: 850; padding: 2px 8px; border-radius: 999px;
+  white-space: nowrap;
+}
+.gl-chk.bad .gl-chk-t { background: var(--danger-soft); color: var(--danger); }
+.gl-chk.warn .gl-chk-t { background: var(--warn-soft); color: var(--warn); }
+.gl-chk.ok .gl-chk-t { background: var(--ok-soft); color: var(--ok); }
+
+.gl-chk-a, .gl-chk-f {
+  display: grid; grid-template-columns: 62px 1fr; gap: 8px;
+  font-size: 12.2px; line-height: 1.72; padding: 5px 0;
+}
+.gl-chk-a span, .gl-chk-f span {
+  font-size: 10.6px; font-weight: 800; color: var(--muted-2);
+  letter-spacing: .3px; padding-top: 3px;
+}
+.gl-chk-a p { margin: 0; color: var(--ink-2); }
+.gl-chk-f p { margin: 0; color: var(--brand); font-weight: 650; }
+.gl-chk-f { border-top: 1px dashed var(--line); }
+
+/* ==========================================================================
+   六、路线卡
+   ========================================================================== */
+.gl-routes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.gl-rt {
+  border: 1px solid var(--line); border-top: 3px solid var(--brand);
+  border-radius: var(--radius-sm); background: var(--panel);
+  padding: 14px 15px;
+}
+.gl-rt.ok { border-top-color: var(--ok); }
+.gl-rt.teal { border-top-color: var(--brand-2); }
+.gl-rt.warn { border-top-color: var(--warn); }
+
+.gl-rt-h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; }
+.gl-rt-h b { font-size: 14.2px; font-weight: 900; color: var(--ink); }
+.gl-rt-h span { font-size: 11px; color: var(--muted-2); margin-left: auto; }
+.gl-rt-tag { font-size: 11.4px; color: var(--brand); font-weight: 750; margin-bottom: 10px; }
+.gl-rt-s { margin: 0 0 11px; padding-left: 18px; }
+.gl-rt-s li {
+  font-size: 12.2px; line-height: 1.68; color: var(--ink-2); margin-bottom: 5px;
+}
+.gl-rt-f {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  font-size: 11.4px; color: var(--muted);
+  border-top: 1px dashed var(--line); padding-top: 9px;
+}
+.gl-rt-w {
+  margin: 9px 0 0; font-size: 11.8px; line-height: 1.7; color: var(--brand);
+  background: var(--brand-soft); border-radius: var(--radius-sm); padding: 8px 10px;
+}
+
+/* ==========================================================================
+   七、决策树
+   ========================================================================== */
+.gl-tree { display: flex; flex-direction: column; gap: 0; }
+.gl-tre {
+  display: grid; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1.25fr);
+  align-items: center; gap: 4px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--panel); padding: 11px 13px; margin-bottom: 8px;
+  transition: border-color .18s, background .18s, transform .12s;
+}
+.gl-tre:hover { border-color: var(--brand); background: var(--brand-soft); }
+.gl-tre:active { transform: scale(.995); }
+
+.gl-tre-if { display: flex; align-items: baseline; gap: 7px; }
+.gl-tre-if span {
+  flex: none; font-size: 10px; font-weight: 800; color: var(--muted-2);
+  border: 1px solid var(--line-2); border-radius: 4px; padding: 0 4px;
+}
+.gl-tre-if b { font-size: 12.4px; font-weight: 700; color: var(--ink); line-height: 1.62; }
+.gl-tre-ar { text-align: center; color: var(--brand); font-size: 15px; font-weight: 900; }
+.gl-tre-then b { display: block; font-size: 12.6px; font-weight: 850; color: var(--brand); margin-bottom: 2px; }
+.gl-tre-then p { margin: 0; font-size: 11.6px; line-height: 1.66; color: var(--muted); }
+
+/* ==========================================================================
+   八、成本表
+   ========================================================================== */
+.gl-cost { font-size: 12.2px; }
+.gl-cost th { white-space: nowrap; }
+.gl-cost td { white-space: nowrap; }
+.gl-cost .gl-tot { font-weight: 900; color: var(--brand); }
+
+/* ==========================================================================
+   九、响应式
+   ========================================================================== */
+@media (max-width: 980px) {
+  .gl-weights { grid-template-columns: repeat(2, 1fr); }
+  .gl-dt-foot { grid-template-columns: 1fr 1fr; }
+  .gl-dt-foot .gl-box:first-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .gl-hero-in { padding: 15px 15px; }
+  .gl-hero-body p { font-size: 12.8px; line-height: 1.8; }
+  .gl-hero-kpi { grid-template-columns: 1fr; gap: 8px; }
+  .gl-kpi { display: flex; align-items: center; gap: 10px; padding: 8px 11px; }
+  .gl-kpi span { margin: 0; flex: none; }
+  .gl-kpi b { flex: 1; font-size: 13px; }
+  .gl-kpi i { margin: 0; flex: none; }
+
+  .gl-presets { gap: 6px; }
+  .gl-pbtn { font-size: 11.6px; padding: 5px 11px; }
+  .gl-pnote { margin-left: 0; width: 100%; }
+
+  .gl-weights { grid-template-columns: 1fr; gap: 9px; }
+  .gl-w { padding: 9px 11px; }
+
+  .gl-tabsw { display: flex; width: 100%; }
+  .gl-tab { flex: 1; padding: 7px 8px; font-size: 11.8px; }
+
+  .gl-sum { grid-template-columns: 1fr; gap: 8px; }
+  .gl-sum-li { display: flex; align-items: baseline; gap: 8px; }
+  .gl-sum-li span { flex: none; width: 62px; margin: 0; }
+  .gl-sum-li b { flex: none; }
+  .gl-sum-li em { margin: 0; }
+
+  /* 排行行：折成三行 */
+  .gl-head {
+    grid-template-columns: 26px 24px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "rk fl nm sc"
+      "tg tg tg tg"
+      "bars bars bars cv";
+    gap: 5px 7px;
+    padding: 10px 11px;
+  }
+  .gl-rk { grid-area: rk; font-size: 13px; }
+  .gl-fl { grid-area: fl; font-size: 17px; }
+  .gl-nm { grid-area: nm; }
+  .gl-nm b { font-size: 13px; }
+  .gl-bars { grid-area: bars; height: 17px; }
+  .gl-tg { grid-area: tg; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 5px; font-size: 10.6px; }
+  .gl-sc { grid-area: sc; font-size: 15px; }
+  .gl-cv { grid-area: cv; }
+
+  .gl-body { padding: 13px 12px 15px; }
+  .gl-dt-lead { font-size: 12.4px; line-height: 1.78; padding: 10px 12px; }
+  .gl-dt-grid { grid-template-columns: 1fr; gap: 4px; }
+  .gl-dt-col h5:not(:first-child) { margin-top: 15px; }
+
+  .gl-hd, .gl-hd tbody, .gl-hd tr, .gl-hd td { display: block; width: 100%; }
+  .gl-hd tr { padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .gl-hd tr:last-child { border-bottom: 0; }
+  .gl-hd td { border: 0; padding: 0; }
+  .gl-hd .gl-hd-k { font-size: 11.2px; color: var(--muted); margin-bottom: 2px; }
+  .gl-hd .gl-hd-k .gl-st { margin-top: 0; margin-left: 5px; }
+  .gl-hd .gl-hd-v b { font-size: 13.4px; display: block; margin-bottom: 3px; }
+  .gl-hd .gl-hd-n { font-size: 11.8px; }
+
+  .gl-dt-foot { grid-template-columns: 1fr; }
+  .gl-dt-foot .gl-box:first-child { grid-column: auto; }
+
+  .gl-chk { padding: 11px 12px; }
+  .gl-chk-a, .gl-chk-f { grid-template-columns: 1fr; gap: 3px; }
+  .gl-chk-a span, .gl-chk-f span { padding-top: 0; }
+  .gl-chk-h b { font-size: 12.2px; }
+
+  .gl-routes { grid-template-columns: 1fr; }
+  .gl-rt-h span { font-size: 10.4px; }
+
+  .gl-tre { grid-template-columns: 1fr; gap: 6px; padding: 11px 12px; }
+  .gl-tre-ar { text-align: left; padding-left: 2px; font-size: 13px; }
+  .gl-tre-then { padding-left: 0; border-top: 1px dashed var(--line); padding-top: 7px; }
+  .gl-tre-if b { font-size: 12.2px; }
+}
+
+@media (max-width: 420px) {
+  .gl-nm i { display: none; }
+  .gl-dim { grid-template-columns: 64px 1fr 24px; gap: 8px; }
+}
+
+/* ==========================================================================
+   十、深色模式微调
+   ========================================================================== */
+html[data-theme="dark"] .gl-hero-in {
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(29, 78, 216, .18) 0%, transparent 55%),
+    var(--panel);
+}
+html[data-theme="dark"] .gl-kpi { background: var(--panel-2); }
+html[data-theme="dark"] .gl-pbtn.on { color: #fff; }
+html[data-theme="dark"] .gl-w { background: var(--panel-2); }
+html[data-theme="dark"] .gl-b { background: rgba(148, 163, 184, .15); }
+html[data-theme="dark"] .gl-box.bad { background: rgba(220, 38, 38, .13); }
+html[data-theme="dark"] .gl-box.good { background: rgba(15, 157, 88, .13); }
+html[data-theme="dark"] .gl-kpi.warn { background: rgba(217, 119, 6, .14); }
+html[data-theme="dark"] .gl-rt-w { background: rgba(29, 78, 216, .16); }
+html[data-theme="dark"] .gl-tre:hover { background: rgba(29, 78, 216, .12); }
+html[data-theme="dark"] .gl-row.open { box-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
+
+/* ==========================================================================
+   十一、网络实施岗卡片（details/summary）
+   ========================================================================== */
+.gl-roles { display: flex; flex-direction: column; gap: 9px; }
+
+.gl-role {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.gl-role[open] { border-color: var(--brand); box-shadow: 0 4px 18px rgba(29, 78, 216, .09); }
+.gl-role.top { border-left: 3px solid var(--brand); }
+
+.gl-role-h {
+  display: grid; align-items: center; gap: 8px;
+  grid-template-columns: 34px 28px minmax(100px, 1.1fr) 76px auto 52px;
+  padding: 11px 13px; cursor: pointer; list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.gl-role-h::-webkit-details-marker { display: none; }
+.gl-role-h::marker { content: ""; }
+.gl-role-h:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+
+.gl-rkr { font-size: 14px; font-weight: 850; color: var(--muted-2); text-align: center; }
+.gl-role.top .gl-rkr { font-size: 16px; }
+.gl-rfl { font-size: 18px; text-align: center; line-height: 1; }
+.gl-rnm { min-width: 0; }
+.gl-rnm b { display: block; font-size: 13.4px; font-weight: 850; color: var(--ink); }
+.gl-rnm i {
+  display: block; font-style: normal; font-size: 11.2px; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.gl-rb { display: flex; gap: 3px; align-items: center; }
+.gl-rbi {
+  flex: 1; height: 5px; border-radius: 999px; background: var(--bg-soft);
+  overflow: hidden; display: block;
+}
+.gl-rbi i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+
+.gl-rst {
+  font-size: 9.6px; font-weight: 800; padding: 2px 6px; border-radius: 999px;
+  white-space: nowrap; justify-self: end;
+}
+.gl-rst.ok { background: var(--ok-soft); color: var(--ok); }
+.gl-rst.warn { background: var(--warn-soft); color: var(--warn); }
+.gl-rst.gray { background: var(--bg-soft); color: var(--muted); }
+
+.gl-rsc {
+  font-size: 15px; font-weight: 900; color: var(--brand);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+
+.gl-role-b {
+  border-top: 1px solid var(--line);
+  background: var(--panel-2);
+  padding: 14px 14px 16px;
+}
+.gl-role-en { margin-bottom: 13px; }
+.gl-role-en b {
+  display: block; font-size: 10.8px; font-weight: 850; color: var(--muted-2);
+  letter-spacing: .4px; margin-bottom: 4px;
+}
+.gl-role-en code {
+  display: block; font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11.4px; line-height: 1.66; color: var(--brand);
+  background: var(--brand-soft); border-radius: 6px; padding: 7px 9px;
+  word-break: break-word;
+}
+.gl-role-en2 { display: block; font-size: 11px; color: var(--muted-2); margin-top: 5px; line-height: 1.6; }
+
+.gl-role-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
+}
+.gl-rc {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 9px 11px;
+}
+.gl-rc span { display: block; font-size: 10.6px; color: var(--muted); margin-bottom: 3px; }
+.gl-rc b { display: block; font-size: 12.4px; font-weight: 800; color: var(--ink); line-height: 1.5; }
+.gl-rc p { margin: 5px 0 0; font-size: 11.2px; line-height: 1.66; color: var(--muted); }
+
+.gl-role-t { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 9px; }
+.gl-rt-fit, .gl-rt-warn {
+  border-radius: var(--radius-sm); padding: 10px 12px;
+}
+.gl-rt-fit { background: var(--ok-soft); }
+.gl-rt-warn { background: var(--danger-soft); }
+.gl-rt-fit b { display: block; font-size: 11px; font-weight: 850; color: var(--ok); margin-bottom: 4px; }
+.gl-rt-warn b { display: block; font-size: 11px; font-weight: 850; color: var(--danger); margin-bottom: 4px; }
+.gl-rt-fit p, .gl-rt-warn p { margin: 0; font-size: 12px; line-height: 1.72; color: var(--ink-2); }
+
+@media (max-width: 760px) {
+  .gl-role-h {
+    grid-template-columns: 26px 22px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "rk fl nm sc"
+      "st st rb rb";
+    gap: 5px 7px;
+  }
+  .gl-rkr { grid-area: rk; font-size: 12.5px; }
+  .gl-rfl { grid-area: fl; font-size: 16px; }
+  .gl-rnm { grid-area: nm; }
+  .gl-rnm b { font-size: 13px; }
+  .gl-rnm i { font-size: 10.6px; }
+  .gl-rb { grid-area: rb; }
+  .gl-rst { grid-area: st; justify-self: start; }
+  .gl-rsc { grid-area: sc; font-size: 14px; }
+  .gl-role-grid { grid-template-columns: 1fr; }
+  .gl-role-t { grid-template-columns: 1fr; }
+  .gl-role-b { padding: 12px 12px 14px; }
+}
+
+html[data-theme="dark"] .gl-rt-fit { background: rgba(15, 157, 88, .12); }
+html[data-theme="dark"] .gl-rt-warn { background: rgba(220, 38, 38, .12); }
+html[data-theme="dark"] .gl-rbi { background: rgba(148, 163, 184, .15); }
+
+/* ==========================================================================
+   十二、校园活动 ROI
+   ========================================================================== */
+.gl-campus { display: flex; flex-direction: column; gap: 8px; }
+
+.gl-cmp {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.gl-cmp.ok { border-left-color: var(--ok); }
+.gl-cmp.brand { border-left-color: var(--brand); }
+.gl-cmp.gray { border-left-color: var(--muted-2); }
+.gl-cmp.bad { border-left-color: var(--danger); }
+.gl-cmp[open] { box-shadow: var(--shadow-sm); border-color: var(--line-2); }
+
+.gl-cmp-h {
+  display: grid; align-items: center; gap: 9px;
+  grid-template-columns: 30px minmax(0, 1fr) 92px 42px 76px;
+  padding: 10px 12px; cursor: pointer; list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.gl-cmp-h::-webkit-details-marker { display: none; }
+.gl-cmp-h::marker { content: ""; }
+.gl-cmp-h:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+
+.gl-cmp-rk { font-size: 14px; font-weight: 850; color: var(--muted-2); text-align: center; }
+.gl-cmp-n { min-width: 0; }
+.gl-cmp-n b { display: block; font-size: 12.8px; font-weight: 800; color: var(--ink); }
+.gl-cmp-n i { display: block; font-style: normal; font-size: 10.6px; color: var(--muted-2); margin-top: 1px; }
+
+.gl-cmp-bars { display: flex; gap: 4px; }
+.gl-cmp-bars span {
+  flex: 1; text-align: center; font-size: 10.4px; font-weight: 850;
+  padding: 2px 0; border-radius: 4px;
+  background: var(--bg-soft); color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.gl-cmp-bars span:nth-child(1) { background: rgba(29, 78, 216, .1); color: var(--brand); }
+.gl-cmp-bars span:nth-child(2) { background: rgba(14, 165, 164, .12); color: #0b7f7e; }
+.gl-cmp-bars span:nth-child(3) { background: rgba(124, 58, 237, .1); color: var(--purple); }
+
+.gl-cmp-sc {
+  font-size: 15px; font-weight: 900; color: var(--ink-2);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.gl-cmp.ok .gl-cmp-sc { color: var(--ok); }
+.gl-cmp.bad .gl-cmp-sc { color: var(--danger); }
+
+.gl-cmp-t {
+  font-size: 10px; font-weight: 850; text-align: center;
+  padding: 3px 6px; border-radius: 999px; white-space: nowrap;
+}
+.gl-cmp.ok .gl-cmp-t { background: var(--ok-soft); color: var(--ok); }
+.gl-cmp.brand .gl-cmp-t { background: var(--brand-soft); color: var(--brand); }
+.gl-cmp.gray .gl-cmp-t { background: var(--bg-soft); color: var(--muted); }
+.gl-cmp.bad .gl-cmp-t { background: var(--danger-soft); color: var(--danger); }
+
+.gl-cmp-b { border-top: 1px dashed var(--line); background: var(--panel-2); padding: 12px 13px 14px; }
+.gl-cmp-why, .gl-cmp-dt { margin-bottom: 10px; }
+.gl-cmp-why b, .gl-cmp-dt b {
+  display: block; font-size: 10.8px; font-weight: 850; color: var(--muted-2);
+  letter-spacing: .3px; margin-bottom: 4px;
+}
+.gl-cmp-why p, .gl-cmp-dt p { margin: 0; font-size: 12.2px; line-height: 1.76; color: var(--ink-2); }
+.gl-cmp-why p { color: var(--ink); font-weight: 650; }
+
+.gl-cmp-adv {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  border-top: 1px dashed var(--line); padding-top: 9px;
+}
+.gl-cmp-adv span {
+  font-size: 11.6px; font-weight: 800; color: var(--brand);
+  background: var(--brand-soft); border-radius: 999px; padding: 3px 10px;
+}
+.gl-cmp-adv em { font-style: normal; font-size: 10.6px; color: var(--muted-2); }
+
+/* 路线三卡 */
+.gl-cr-row { display: grid; grid-template-columns: 34px 1fr; gap: 8px; margin-bottom: 7px; align-items: start; }
+.gl-cr-row span {
+  font-size: 9.8px; font-weight: 850; text-align: center;
+  padding: 2px 0; border-radius: 4px; margin-top: 2px;
+}
+.gl-cr-row span.must { background: var(--ok-soft); color: var(--ok); }
+.gl-cr-row span.ok2 { background: var(--brand-soft); color: var(--brand); }
+.gl-cr-row span.no { background: var(--danger-soft); color: var(--danger); }
+.gl-cr-row p { margin: 0; font-size: 12px; line-height: 1.7; color: var(--ink-2); }
+
+@media (max-width: 760px) {
+  .gl-cmp-h {
+    grid-template-columns: 24px minmax(0, 1fr) 40px;
+    grid-template-areas:
+      "rk n sc"
+      "bars bars t";
+    gap: 4px 8px;
+    padding: 9px 11px;
+  }
+  .gl-cmp-rk { grid-area: rk; font-size: 12.5px; }
+  .gl-cmp-n { grid-area: n; }
+  .gl-cmp-n b { font-size: 12.4px; }
+  .gl-cmp-n i { font-size: 10.2px; }
+  .gl-cmp-bars { grid-area: bars; }
+  .gl-cmp-sc { grid-area: sc; font-size: 14px; }
+  .gl-cmp-t { grid-area: t; justify-self: end; }
+  .gl-cmp-b { padding: 11px 12px 13px; }
+}
+
+html[data-theme="dark"] .gl-cmp-bars span { background: rgba(148, 163, 184, .12); }
+html[data-theme="dark"] .gl-cmp-bars span:nth-child(1) { background: rgba(29, 78, 216, .22); }
+html[data-theme="dark"] .gl-cmp-bars span:nth-child(2) { background: rgba(14, 165, 164, .2); }
+html[data-theme="dark"] .gl-cmp-bars span:nth-child(3) { background: rgba(124, 58, 237, .22); }
+
+/* ==========================================================================
+   十三、超长英文/数字防溢出（移动端必要）
+   ========================================================================== */
+.gl-role, .gl-cmp, .gl-row, .gl-dt, .gl-role-b, .gl-role-grid, .gl-rc,
+.gl-cmp-b, .gl-rt, .gl-box, .gl-chk, .gl-tre { min-width: 0; max-width: 100%; }
+
+.gl-role-en code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+}
+.gl-role-en2 { overflow-wrap: anywhere; }
+.gl-rc b, .gl-rc p, .gl-cmp-why p, .gl-cmp-dt p, .gl-box p,
+.gl-law p, .gl-law b, .gl-dt-lead, .gl-chk-a p, .gl-chk-f p,
+.gl-rt-w, .gl-cr-row p, .gl-tre-then p, .gl-tre-if b { overflow-wrap: anywhere; }
+
+/* 硬门槛表在窄屏下的数值也要能断行 */
+.gl-hd .gl-hd-v b, .gl-hd .gl-hd-n { overflow-wrap: anywhere; }
+
+/* 岗位名在移动端允许两行，不要省略号砍掉 */
+@media (max-width: 760px) {
+  .gl-rnm i {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+  .gl-role-b, .gl-cmp-b { overflow: hidden; }
+  .gl-body { overflow: hidden; }
+  .gl-tg { overflow-wrap: anywhere; }
+}
+
+/* ==========================================================================
+   十四、移动端栅格抗压（关键修复）
+   问题：grid-template-columns: 1fr 的 min 是 auto（=min-content），
+        某些子块 min-content 远大于容器，导致整列被撑到 500px+，
+        文字被父级 overflow:hidden 硬切，手机上看就是「半句话没了」。
+   修法：一律 minmax(0,1fr)，并给子项 min-width:0 + 允许任意断行。
+   ========================================================================== */
+@media (max-width: 860px) {
+  .gl-dt-grid,
+  .gl-dt-foot,
+  .gl-role-grid,
+  .gl-role-t,
+  .gl-routes,
+  .gl-weights,
+  .gl-sum,
+  .gl-cmp-grid,
+  .gl-kpi-row,
+  .gl-checks { grid-template-columns: minmax(0, 1fr) !important; }
+
+  .gl-dt-grid > *,
+  .gl-dt-col,
+  .gl-dt-foot > *,
+  .gl-role-grid > *,
+  .gl-role-t > *,
+  .gl-routes > *,
+  .gl-weights > *,
+  .gl-sum > *,
+  .gl-dt-3 > * { min-width: 0; max-width: 100%; }
+
+  .gl-dt-col, .gl-steps, .gl-req, .gl-steps li, .gl-req li,
+  .gl-dt-lead, .gl-law p, .gl-hd .gl-hd-n, .gl-hd .gl-hd-v b,
+  .gl-box p, .gl-box em, .gl-dt-foot p { overflow-wrap: anywhere; word-break: break-word; }
+}
+
+/* 硬门槛表：移动端必须清掉桌面端的百分比列宽，否则内容被 30%/34% 卡死 */
+@media (max-width: 860px) {
+  .gl-hd .gl-hd-k,
+  .gl-hd .gl-hd-v,
+  .gl-hd .gl-hd-n { width: auto !important; max-width: 100%; }
+  .gl-hd .gl-hd-v b { display: block; }
+  .gl-hd td { overflow-wrap: anywhere; }
+}
+
+/* table.tb 桌面端写死 min-width:620px（style.css），新章节的硬门槛表没有 thead
+   不会被 app4 自动卡片化，于是手机上它仍是 560px 宽的横向滚动表，
+   右边整段文字看不见。这里强制解除最小宽度。 */
+@media (max-width: 860px) {
+  table.gl-hd { min-width: 0 !important; width: 100% !important; table-layout: auto; }
+  table.gl-hd tbody { width: 100% !important; }
+  table.gl-hd tr { width: 100% !important; }
+  table.gl-cost { min-width: 0 !important; }
+}
+
+/* 权重滑块：手机上 4px 的轨道 + 15px 圆点，肉眼几乎看不见也不好按 */
+@media (max-width: 860px) {
+  .gl-w { padding: 11px 12px 12px; }
+  .gl-w-h { margin-bottom: 2px; }
+  .gl-w-v { font-size: 13px; }
+  .gl-w input[type="range"] {
+    display: block; width: 100%; height: 30px;
+    margin: 0 0 2px; background: transparent;
+    touch-action: pan-y;
+  }
+  .gl-w input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px; border-radius: 999px; background: var(--line-2);
+  }
+  .gl-w input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px; margin-top: -8px;
+    border: 3px solid #fff; border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 1px 6px rgba(15, 23, 42, .38);
+  }
+  .gl-w input[type="range"]::-moz-range-track {
+    height: 6px; border-radius: 999px; background: var(--line-2);
+  }
+  .gl-w input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px; border: 3px solid #fff;
+    border-radius: 50%; background: var(--brand);
+  }
+  .gl-w-d { font-size: 11.4px; margin-top: 2px; }
+}

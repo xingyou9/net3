@@ -16,17 +16,37 @@
   /* ---------- 导航 ---------- */
   const NAV = [
     { id: "s-overview", i: "◎", t: "总览" },
+    { id: "s-priority", i: "⚡", t: "优先级" },
     { id: "s-intel", i: "📊", t: "行业" },
     { id: "s-timeline", i: "🗓", t: "时间轴" },
+    { id: "s-map", i: "🗺", t: "学习地图" },
+    { id: "s-skills", i: "🌳", t: "技能树" },
+    { id: "s-cap", i: "📈", t: "能力自评" },
+    { id: "s-projects", i: "🧪", t: "项目实战" },
+    { id: "s-env", i: "🖥", t: "环境工具" },
+    { id: "s-sop", i: "🛠", t: "排障手册" },
     { id: "s-cert", i: "🎖", t: "证书" },
-    { id: "s-calendar", i: "📅", t: "日历" },
-    { id: "s-skills", i: "🌳", t: "技能" },
+    { id: "s-calendar", i: "📅", t: "考试日历" },
+    { id: "s-contest", i: "🏆", t: "竞赛" },
     { id: "s-tradeoff", i: "⚖️", t: "取舍" },
-    { id: "s-year3", i: "🚦", t: "大三" },
-    { id: "s-job", i: "💼", t: "就业" },
+    { id: "s-year3", i: "🚦", t: "大三分流" },
+    { id: "s-zsb", i: "🎓", t: "专升本" },
+    { id: "s-campus", i: "🎒", t: "校园攻略" },
+    { id: "s-job", i: "💼", t: "就业方案" },
+    { id: "s-city", i: "🗼", t: "城市进阶" },
+    { id: "s-europe", i: "✈️", t: "欧洲路线" },
+    { id: "s-global", i: "🌍", t: "国家排行" },
+    { id: "s-jobmap", i: "🧭", t: "岗位全景" },
+    { id: "s-jobdata", i: "🔍", t: "招聘样本" },
+    { id: "s-interview", i: "🎤", t: "面试题库" },
+    { id: "s-resume", i: "📄", t: "简历谈薪" },
+    { id: "s-week", i: "✅", t: "周复盘" },
+    { id: "s-routine", i: "⏰", t: "作息预算" },
+    { id: "s-toolbox", i: "🧰", t: "自检清单" },
+    { id: "s-sources", i: "📋", t: "数据来源" },
+    { id: "s-res", i: "🔗", t: "资源库" },
     { id: "s-pitfall", i: "⚠️", t: "避坑" },
-    { id: "s-toolbox", i: "🧰", t: "自检" },
-    { id: "s-res", i: "🔗", t: "资源" }
+    { id: "s-faq", i: "❓", t: "常见问题" }
   ];
 
   function buildNav() {
@@ -53,7 +73,6 @@
   /* ---------- 滚动高亮 ---------- */
   function initScroll() {
     const secs = NAV.map((n) => document.getElementById(n.id)).filter(Boolean);
-    const links = Array.prototype.slice.call(document.querySelectorAll("[data-id]"));
     const top = $("#totop");
 
     function update() {
@@ -62,7 +81,11 @@
       for (const s of secs) {
         if (s.getBoundingClientRect().top <= 120) cur = s;
       }
-      links.forEach((a) => a.classList.toggle("on", a.dataset.id === (cur && cur.id)));
+      // 每次滚动重新查询：导航可能在 app3.js 中被重建为分组结构
+      const links = document.querySelectorAll("[data-id]");
+      for (let i = 0; i < links.length; i++) {
+        links[i].classList.toggle("on", links[i].dataset.id === (cur && cur.id));
+      }
       top.classList.toggle("show", y > 500);
     }
     window.addEventListener("scroll", update, { passive: true });

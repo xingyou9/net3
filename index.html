@@ -4,12 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1d4ed8">
-<title>计算机网络技术 · 三年作战地图 | 日照科技职业学院 510202</title>
-<meta name="description" content="日照科技职业学院计算机网络技术专业（510202）三年完整规划：学期时间轴、考级证书路线、技能树、取舍矩阵、大三分流决策、就业作战与日照本地市场情报。">
+<title>计算机网络技术 · 三年作战地图</title>
+<meta name="description" content="计算机网络技术专业三年完整规划：学期时间轴、考证路线、技能树、岗位全景、大三分流决策、就业作战与本地市场情报。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231d4ed8'/><text y='70' x='50' font-size='58' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>N</text></svg>">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style2.css">
+<link rel="stylesheet" href="assets/style3.css">
+<link rel="stylesheet" href="assets/style4.css">
+<link rel="stylesheet" href="assets/style5.css">
+<link rel="stylesheet" href="assets/style6.css">
 </head>
 <body>
+
+<div id="readbar"></div>
 
 <!-- ============ 顶栏 ============ -->
 <header class="topbar">
@@ -21,24 +28,37 @@
     <nav class="navscroll">
       <ul class="navlist" id="navlist"></ul>
     </nav>
+    <button class="themebtn" id="themebtn" type="button" title="切换深浅色">🌙</button>
   </div>
 </header>
 
 <!-- ============ HERO ============ -->
 <div class="hero">
   <div class="wrap">
-    <h1>日照科技职业学院 · <em>计算机网络技术（510202）</em><br>三年作战地图</h1>
+    <h1><em>计算机网络技术</em><br>三年作战地图</h1>
     <p class="lead">
       这是一份按<b>学期、月份、考试窗口、岗位需求</b>倒推出来的执行方案，不是励志文案。
-      目标只有一个：三年后毕业时，你手里有<b>证书 + 项目 + 实习 + 方向</b>四样东西，能从容选择最好的那条路，而不是被选择。
-      适用对象：2026 级（2026.09 入学 — 2029.06 毕业）。数据基于 2026 年公开行业报告、山东省教育招生考试院政策、本地招聘 JD 与认证官方信息整理，<b>具体报名时间与费用请以当年官方公告为准</b>。
+      目标只有一个：三年后毕业时，你手里有<b>能力 + 项目 + 实习 + 方向</b>四样东西，能从容选择最好的那条路，而不是被选择。
+      适用对象：2026 级（2026.09 入学 — 2029.06 毕业）。<b>数据与判断分开标注可信度</b>：每个数字都登记了来源、日期与口径状态，未核实的一律写明「待核实」或「估算」，不当成事实使用（见第 29 节）。
     </p>
     <div class="hero-badges">
-      <span class="badge">🏫 日照科技职业学院 · 信息工程学院</span>
-      <span class="badge">📇 专业代码 <b>510202</b></span>
       <span class="badge">📅 <b>2026.09 — 2029.06</b></span>
       <span class="badge">🎯 核心方向：网络运维 / 系统集成 / 信创 / 云网融合</span>
+      <span class="badge" id="hero-goal-chip-wrap"><span class="gchip gray" id="hero-goal-chip">目标未设定</span></span>
     </div>
+
+    <!-- ============ 目标定位（个性化入口） ============ -->
+    <div class="goalbar">
+      <div class="goalbar-h">
+        <b>① 先选目标，再看后面的所有建议</b>
+        <span class="hint">不同目标下，证书优先级、项目侧重、薪资口径完全不同。选择会保存在本机浏览器。</span>
+      </div>
+      <div class="goalbar-b">
+        <div class="goalopts" id="goalopts"></div>
+        <div class="goal-out" id="goal-out"></div>
+      </div>
+    </div>
+
     <div class="kpis" id="kpis"></div>
   </div>
 </div>
@@ -110,7 +130,7 @@
             <tr><td><b>实习</b></td><td>3 个月在岗</td><td>6 个月真实项目 + 独立处理过故障</td><td>6 个月 + 参与过一次割接/交付</td></tr>
             <tr><td><b>系统能力</b></td><td>会 Linux 基础命令</td><td>能独立部署服务 + 写 Shell 脚本</td><td>+ Python 自动化 + 信创国产化 OS</td></tr>
             <tr><td><b>成果证明</b></td><td>证书扫描件</td><td>实验仓库 + PDF 项目报告</td><td>+ 技术博客 + 竞赛获奖 + 推荐人</td></tr>
-            <tr><td><b>起薪</b></td><td>4K（日照）/ 6K（外地）</td><td>6K-7K（日照）/ 8K-10K（外地）</td><td>8K+（日照）/ 12K+（外地）</td></tr>
+            <tr><td><b>起薪参考</b></td><td colspan="3">不设固定目标值。用第 23 节「招聘样本池」自己采集的中位数作为校准基准（青岛/济南 5-9K，2-3 年后南下 8-15K 仅为区间估算，须自行核实）</td></tr>
             <tr><td><b>兜底</b></td><td>一份能投的简历</td><td>手握 offer + 明确路径</td><td>主路径 + 兜底路径双保险</td></tr>
           </tbody>
         </table>
@@ -119,12 +139,32 @@
   </div>
 </section>
 
-<!-- ============ 2. 行业情报 ============ -->
+<!-- ============ 2. 学习优先级 ============ -->
+<section class="blk" id="s-priority">
+  <div class="sec-head">
+    <span class="eyebrow">02 / Priority</span>
+    <h2>学习优先级：先练什么，后考什么</h2>
+    <p>这一节回答的是最容易被搞反的问题——<b>证书不是大学三年的核心任务，能力才是</b>。下面的分级依据是「岗位 JD 出现频次 × 可验证性 × 迁移性」，不是个人偏好。每一级都给了验收标准，达不到标准就不算掌握。</p>
+  </div>
+
+  <div class="note danger" style="margin-bottom:14px">
+    <b>必须接受的现实：</b>考到证书 ≠ 具备企业需要的实际工作能力。如果花大量时间背题拿证，却不会配设备、不会排故障、不会部署 Linux 服务，那么简历上堆再多证书，面试时第一个深挖问题就会露底。
+    宁可少考一张证，也要保证自己<b>真正做过两个能在面试里讲清楚的项目</b>。
+  </div>
+
+  <div id="prio"></div>
+
+  <div class="note" style="margin-top:14px">
+    <b>使用方法：</b>先看 S 级，逐条对照自己的验收标准——能做到「独立完成」或「能排障」，才算过关。S 级有四条没到位的，先别碰 A 级和 B 级。证书只在 B 级之后才进入考虑范围。
+  </div>
+</section>
+
+<!-- ============ 3. 行业情报 ============ -->
 <section class="blk" id="s-intel">
   <div class="sec-head">
-    <span class="eyebrow">02 / Industry</span>
+    <span class="eyebrow">03 / Industry</span>
     <h2>行业在怎么变：缺什么、多什么、钱在哪</h2>
-    <p>先看清楚行业，再决定往哪使劲。以下数据来自公开行业报告与本地招聘 JD，口径不同会有差异，用于判断<b>趋势方向</b>，不作为精确预测。</p>
+    <p>先看清楚行业，再决定往哪使劲。以下数据来自公开行业报告与本地招聘 JD，口径不同会有差异，用于判断<b>趋势方向</b>，不作为精确预测。其中 4 项关键数字无法追溯到原始报告，已在第 29 节标注为「待核实」，<b>只能当趋势参考，不能引用为事实</b>。</p>
   </div>
 
   <div class="grid g2">
@@ -175,10 +215,10 @@
   </div>
 </section>
 
-<!-- ============ 3. 时间轴 ============ -->
+<!-- ============ 4. 时间轴 ============ -->
 <section class="blk" id="s-timeline">
   <div class="sec-head">
-    <span class="eyebrow">03 / Timeline</span>
+    <span class="eyebrow">04 / Timeline</span>
     <h2>三年时间轴：六个学期，每个学期干什么</h2>
     <p>点击学期查看详细安排。每一条都标注了<b>时间窗口、具体动作、验收标准</b>，以及这个学期该争取什么、该舍弃什么。</p>
   </div>
@@ -192,43 +232,17 @@
   </div>
 </section>
 
-<!-- ============ 4. 证书 ============ -->
-<section class="blk" id="s-cert">
+<!-- ============ 5. 学习地图 ============ -->
+<section class="blk" id="s-map">
   <div class="sec-head">
-    <span class="eyebrow">04 / Certificates</span>
-    <h2>考级证书路线：考什么、什么时候考、值不值</h2>
-    <p>按 <b>S（必拿）/ A（强烈建议）/ B（顺手或方向性）/ C（毕业后或备选）</b> 分级。核心原则：<b>先便宜的、先通用的、先能换钱的</b>，绝不盲目堆数量。</p>
+    <span class="eyebrow">05 / Study Map</span>
+    <h2>学习地图：学校教的、岗位要的、你缺的</h2>
+    <p>把专业课程逐门拆开对照岗位需求，看清哪门课必须学透、哪门课及格就行。<b>权重（x/12）代表对就业的实际影响，不是学分</b>——这两者经常是反的。</p>
   </div>
-  <div class="card" style="margin-bottom:14px">
-    <div class="card-b" style="padding:13px 17px">
-      <div class="chips" id="cert-filter"></div>
-    </div>
-  </div>
-  <div class="cert-grid" id="certs"></div>
-  <div class="card" style="margin-top:14px">
-    <div class="card-h"><h3>🧭 推荐考证顺序（最优解路径）</h3></div>
-    <div class="card-b">
-      <div class="tl" id="cert-path"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. 考试日历 ============ -->
-<section class="blk" id="s-calendar">
-  <div class="sec-head">
-    <span class="eyebrow">05 / Calendar</span>
-    <h2>全年考试与关键节点日历</h2>
-    <p>按月份排列。<b>报名窗口往往只有 7-10 天，逾期不补报</b>——把报名时间设成手机提醒，提前 3 天。</p>
-  </div>
-  <div class="card">
-    <div class="card-b" style="padding:0">
-      <div class="tbox">
-        <table class="tb compact">
-          <thead><tr><th style="min-width:56px">月份</th><th>关键事项</th><th style="min-width:88px">涉及人群</th></tr></thead>
-          <tbody id="cal-body"></tbody>
-        </table>
-      </div>
-    </div>
+  <div class="lm-grid" id="map-list"></div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-h"><h3>🎯 学校普遍不教、但岗位必需的四个缺口</h3></div>
+    <div class="card-b"><div class="grid g2" id="map-gap"></div></div>
   </div>
 </section>
 
@@ -252,10 +266,129 @@
   </div>
 </section>
 
-<!-- ============ 7. 取舍 ============ -->
+<!-- ============ 7. 能力自评 ============ -->
+<section class="blk" id="s-cap">
+  <div class="sec-head">
+    <span class="eyebrow">07 / Capability</span>
+    <h2>能力自评：你到底掌握到什么程度</h2>
+    <p>技能树只回答「学没学过」，这一节回答「掌握到什么程度」。四级划分的意义在于：<b>只有「独立完成」与「能排障」两级，才算真正具备实操能力</b>。评分会实时汇总成能力画像，并指出最该补的短板。数据保存在本机浏览器。</p>
+  </div>
+  <div class="cap-wrap">
+    <div class="cap-dims" id="cap-dims"></div>
+    <div class="cap-side" id="cap-side"></div>
+  </div>
+</section>
+
+<!-- ============ 8. 项目实战 ============ -->
+<section class="blk" id="s-projects">
+  <div class="sec-head">
+    <span class="eyebrow">08 / Projects</span>
+    <h2>项目实战：三层递进，每层都要交东西</h2>
+    <p>20 个实验拓扑证明不了就业能力，<b>一个完整交付可以</b>。三层项目按「基础网络 → 系统与服务 → 综合方案」递进，每层都列了必须交付的成果，勾选即记录完成度。</p>
+  </div>
+  <div class="note warn" style="margin-bottom:14px">
+    <b>一个必须说清的区别：</b>模拟器项目 ≠ 真实生产环境经验。它的价值是证明你具备完整的方法论，而不是证明你处理过线上事故。真实经验只能通过实训、实习或在真实设备上操作获得——这也是为什么实习不能省。
+  </div>
+  <div id="proj-list"></div>
+</section>
+
+<!-- ============ 9. 环境与工具 ============ -->
+<section class="blk" id="s-env">
+  <div class="sec-head">
+    <span class="eyebrow">09 / Environment</span>
+    <h2>环境与工具：把练习场搭起来</h2>
+    <p>工具不是目的，但没有合适的工具，很多练习根本做不了。<b>先把免费软件装齐、确认自己能坚持练，再考虑买硬件</b>——这是避免浪费钱的最简单办法。</p>
+  </div>
+  <div class="note warn" style="margin-bottom:14px">
+    <b>关于模拟器的重要提醒：</b>华为 eNSP 官方已停止更新，在 Win11 + 新版 VirtualBox 环境下经常启动失败，这是几乎所有初学者都会踩的坑。建议主用 <b>HCL（新华三）</b> 或 <b>EVE-NG</b>，eNSP 只作为查阅 HCIA 教学资料的补充。命令体系有差异，但原理完全相通。
+  </div>
+  <div id="env-soft"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>🔧 硬件清单（按必要性排序）</h3><span class="grow"></span><span class="pill p-warn">先看第 1、2 项，其余按需</span></div>
+    <div class="card-b"><div class="hwlist" id="env-hard"></div></div>
+  </div>
+</section>
+
+<!-- ============ 10. 排障手册 ============ -->
+<section class="blk" id="s-sop">
+  <div class="sec-head">
+    <span class="eyebrow">10 / Troubleshooting</span>
+    <h2>排障手册：故障来了按这个顺序查</h2>
+    <p>排障能力是网络岗最硬的分水岭，也是最难自学的一项。这一节给的是<b>可以照着执行的流程</b>，不是「多练就会了」这种废话。</p>
+  </div>
+  <div class="sopsteps" id="sop-steps"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>📐 分层排查对照表</h3><span class="grow"></span><span class="pill p-gray">从下往上查，不要跳层</span></div>
+    <div class="card-b" id="sop-layers"></div>
+  </div>
+  <div class="card">
+    <div class="card-h"><h3>🧯 八个高频故障的处置路径</h3><span class="grow"></span><span class="pill p-brand">点击展开</span></div>
+    <div class="card-b" id="sop-cases"></div>
+  </div>
+  <div class="card">
+    <div class="card-h"><h3>⌨️ 命令速查（Linux 侧）</h3></div>
+    <div class="card-b" id="sop-cmd"></div>
+  </div>
+</section>
+
+<!-- ============ 11. 证书 ============ -->
+<section class="blk" id="s-cert">
+  <div class="sec-head">
+    <span class="eyebrow">11 / Certificates</span>
+    <h2>考级证书路线：考什么、什么时候考、值不值</h2>
+    <p>按 <b>S（必拿）/ A（强烈建议）/ B（顺手或方向性）/ C（毕业后或备选）</b> 分级。核心原则：<b>先便宜的、先通用的、先能换钱的</b>，绝不盲目堆数量。</p>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-b" style="padding:13px 17px">
+      <div class="chips" id="cert-filter"></div>
+    </div>
+  </div>
+  <div class="cert-grid" id="certs"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>🧭 推荐考证顺序（最优解路径）</h3></div>
+    <div class="card-b">
+      <div class="tl" id="cert-path"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. 考试日历 ============ -->
+<section class="blk" id="s-calendar">
+  <div class="sec-head">
+    <span class="eyebrow">12 / Calendar</span>
+    <h2>全年考试与关键节点日历</h2>
+    <p>按月份排列。<b>报名窗口往往只有 7-10 天，逾期不补报</b>——把报名时间设成手机提醒，提前 3 天。</p>
+  </div>
+  <div class="card">
+    <div class="card-b" style="padding:0">
+      <div class="tbox">
+        <table class="tb compact">
+          <thead><tr><th style="min-width:56px">月份</th><th>关键事项</th><th style="min-width:88px">涉及人群</th></tr></thead>
+          <tbody id="cal-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. 竞赛 ============ -->
+<section class="blk" id="s-contest">
+  <div class="sec-head">
+    <span class="eyebrow">13 / Contest</span>
+    <h2>竞赛：性价比最高的一次押注</h2>
+    <p>竞赛的价值不止是奖项——<b>赛题质量通常高于课堂作业，备赛过程本身就是高强度训练</b>。同时省赛奖项在专升本与求职中都有实际权重。时间以当年通知为准。</p>
+  </div>
+  <div id="contest-list"></div>
+  <div class="card" style="margin-top:8px">
+    <div class="card-h"><h3>📌 参赛四条原则</h3></div>
+    <div class="card-b"><ul class="plain" id="contest-rules"></ul></div>
+  </div>
+</section>
+
+<!-- ============ 14. 取舍 ============ -->
 <section class="blk" id="s-tradeoff">
   <div class="sec-head">
-    <span class="eyebrow">07 / Trade-off</span>
+    <span class="eyebrow">14 / Trade-off</span>
     <h2>该争取什么 · 该舍弃什么</h2>
     <p>三年时间总量固定，做任何一件事的代价都是不做另一件。下面两张表按<b>重要度</b>排序（10 分制）。</p>
   </div>
@@ -271,10 +404,10 @@
   </div>
 </section>
 
-<!-- ============ 8. 大三分流 ============ -->
+<!-- ============ 15. 大三分流 ============ -->
 <section class="blk" id="s-year3">
   <div class="sec-head">
-    <span class="eyebrow">08 / Year 3</span>
+    <span class="eyebrow">15 / Year 3</span>
     <h2>大三怎么安排：四条路的完整决策</h2>
     <p>大二下必须选定<b>一条主路径 + 一条兜底路径</b>。四条路的时间成本互斥，全抓等于全不精。</p>
   </div>
@@ -300,10 +433,82 @@
   <div class="paths" id="paths"></div>
 </section>
 
-<!-- ============ 9. 就业作战 ============ -->
+<!-- ============ 16. 升学决策 ============ -->
+<section class="blk" id="s-zsb">
+  <div class="sec-head">
+    <span class="eyebrow">16 / ZSB</span>
+    <h2>专升本决策：一条独立的、必须提前启动的路线</h2>
+    <p>不要把专升本当成「大三再说的备选项」。如果走这条路，<b>大一就要开始积累排名与英语</b>，因为两者都是长周期、无法突击的。这一节把政策要点、两条路线的成本收益、以及逐学期动作分开讲清楚。</p>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>📋 政策要点（全部需按当年文件核对）</h3></div>
+    <div class="card-b" id="zsb-policy"></div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>⚖️ 两条路线的成本收益对比</h3></div>
+    <div class="card-b" id="zsb-cmp"></div>
+  </div>
+  <div class="card">
+    <div class="card-h"><h3>🗓 升学路线时间轴（大一是起点，不是大三）</h3></div>
+    <div class="card-b"><div class="tl" id="zsb-tl"></div></div>
+  </div>
+</section>
+
+<!-- ============ 17. 校园攻略 ============ -->
+<section class="blk" id="s-campus">
+  <div class="sec-head">
+    <span class="eyebrow">17 / Campus</span>
+    <h2>在校三年怎么活：班委、入党、评优、活动，该做什么不该做什么</h2>
+    <p>技术只决定你的下限，学校里的这些事决定你能不能拿到资源。下面每一条都是可执行的动作，不是口号。<b>按学期推进，别跳步。</b></p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>🗓 六个学期，每学期该干什么</h3></div>
+    <div class="card-b"><div class="tl" id="campus-tl"></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>🎖 十个职务 / 身份：哪个值，哪个不值</h3><span class="grow"></span><span class="pill p-ok">按价值排序</span></div>
+    <div class="card-b">
+      <div class="grid g2" id="campus-roles"></div>
+      <div class="note" style="margin-top:14px"><b>排序逻辑</b>：不看你喜不喜欢，看它能不能换成资源、信息、经历三样东西。只消耗时间不给东西的，一律排在后面。</div>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-h"><h3>🚩 入党流程：从申请书到转正</h3></div>
+      <div class="card-b"><div class="tl" id="campus-party"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h3>📊 综测、评优、奖学金：规则怎么用</h3></div>
+      <div class="card-b"><div id="campus-eval"></div></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-h"><h3>✅ 该做：12 条</h3></div>
+      <div class="card-b"><ul class="plain v" id="campus-do" style="margin:0"></ul></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h3>❌ 不该做：12 条</h3></div>
+      <div class="card-b"><ul class="plain x" id="campus-dont" style="margin:0"></ul></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>💬 8 个真实场景：遇到这种事怎么办</h3></div>
+    <div class="card-b"><div id="campus-scenes"></div></div>
+  </div>
+
+  <p class="srcnote" id="campus-note" style="margin-top:12px"></p>
+</section>
+
+<!-- ============ 18. 就业作战 ============ -->
 <section class="blk" id="s-job">
   <div class="sec-head">
-    <span class="eyebrow">09 / Career</span>
+    <span class="eyebrow">18 / Career</span>
     <h2>毕业怎么才能有好工作：完整作战方案</h2>
     <p>从岗位选择、简历写法、面试题库到投递渠道，全部按本地真实招聘要求反推。</p>
   </div>
@@ -345,20 +550,627 @@
   </div>
 </section>
 
-<!-- ============ 10. 避坑 ============ -->
-<section class="blk" id="s-pitfall">
+<!-- ============ 18. 城市进阶 ============ -->
+<section class="blk" id="s-city">
   <div class="sec-head">
-    <span class="eyebrow">10 / Pitfalls</span>
-    <h2>14 个高危坑：踩一个可能浪费一整年</h2>
-    <p>这些是往届学生最常犯的错误。<span class="pill p-danger">红色 = 高危</span>，会直接导致时间或金钱的重大损失。</p>
+    <span class="eyebrow">19 / City Path</span>
+    <h2>城市进阶：青岛/济南练手 → 一线跃迁</h2>
+    <p>毕业先在青岛或济南攒真实项目，2-3 年后带着经验南下北京、杭州、深圳、广州——这条路走得通，但<b>时间和能力门槛必须踩准</b>。城市只是杠杆，能力才是本金。</p>
   </div>
-  <div class="grid g2" id="pitfalls"></div>
+  <div class="ladder" id="city-ladder"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>⚠️ 南下之前必须想清楚的五件事</h3></div>
+    <div class="card-b"><div class="grid g2" id="city-notes"></div></div>
+  </div>
+  <div class="note warn" style="margin-top:14px">
+    <b>薪资数字的用法：</b>上面各区间的用途是建立数量级认知，<b>不是承诺</b>。真实区间请用下一节「招聘样本池」自己采集——同一城市、不同企业、不同职责，差距可以达到一倍以上。
+  </div>
 </section>
 
-<!-- ============ 11. 自检 ============ -->
+<!-- ============ 20. 欧洲路线 ============ -->
+<section class="blk" id="s-europe">
+  <div class="sec-head">
+    <span class="eyebrow">20 / Europe</span>
+    <h2>欧洲路线：从大专到德国蓝卡，七年可行路线</h2>
+    <p>
+      国内那条路是「青岛济南练手 → 一线跃迁」，这条路是另一条分支：<b>先在德国落地，再用欧盟内流动去荷兰或北欧</b>。
+      顺序不能反——德国有明确写「无需大学学历」的 IT 专家通道，荷兰没有。下面每个模块都可以勾选，进度会存在你自己的浏览器里。
+    </p>
+  </div>
+
+  <!-- 阶段指示器 -->
+  <div class="eu-stepbar">
+    <div class="eu-sb-head">
+      <span class="eu-sb-title">📌 阶段指示器</span>
+      <span class="eu-sb-hint">默认按当前日期推断你所在阶段，可点任意阶段查看</span>
+    </div>
+    <div class="eu-stepper" id="eu-steps"></div>
+  </div>
+  <div class="eu-stage" id="eu-stage"></div>
+
+  <!-- 总进度 -->
+  <div class="eu-prog" style="margin-top:14px">
+    <div class="eu-ring" id="eu-ring"><span class="eu-ring-t" id="eu-ring-t">0%</span></div>
+    <div class="eu-prog-txt" id="eu-prog-txt"></div>
+    <button class="eu-prog-reset" id="eu-reset" type="button">重置勾选</button>
+  </div>
+
+  <!-- 模块一：证书 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h">
+      <h3>模块一 · 证书路线图：九张证，只有两张真正决定成败</h3>
+      <span class="grow"></span>
+      <span class="pill p-brand">星级 = 难度</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 12px">
+        排序逻辑不是「哪张更高级」，而是<b>「欧洲雇主的招聘系统里会不会出现这个词」</b>。
+        右侧的五格条是<b>欧洲认可度</b>（我按招聘实际出现频率给的判断，不是统计数据）。
+        前两张（CCNA、Linux）是门槛，其余都是加分项——<b>加分项再堆也补不上门槛的缺口</b>。
+      </p>
+      <div id="eu-certs"></div>
+      <div class="note warn" style="margin-top:12px;font-size:12.5px">
+        <b>关于「先考 CCNP 还是先找工作」：</b>如果目标是德国蓝卡，<b>3 年经验比 CCNP 重要得多</b>。
+        CCNP 考完但没有可证明的工作年限，依然达不到 IT 专家通道的条件；反过来，有 3 年经验 + CCNA，就已经能递签。
+        所以顺序是：CCNA → 工作 → 边工作边考 CCNP 一门。
+      </div>
+    </div>
+  </div>
+
+  <!-- 模块二：国内准备 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h">
+      <h3>模块二 · 国内准备期行动清单（在校三年 + 工作前半年）</h3>
+      <span class="grow"></span>
+      <span class="pill p-ok">勾选即存档</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 6px">
+        每条都写了<b>交付物</b>。没有交付物就不算完成——这是这份清单和普通待办列表的唯一区别。
+      </p>
+      <div id="eu-prep"></div>
+    </div>
+  </div>
+
+  <!-- 模块三：工作期 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>模块三 · 工作期：哪些岗位真的能攒出「3 年专业经验」</h3></div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 12px">
+        德国蓝卡要求经验是<b>「接近大学水平的专业工作」</b>。同样是干三年，有的岗位写得出漂亮的证明信，有的写不出。
+        下面按「能不能换成签证材料」排序，不是按薪资排。
+      </p>
+      <div class="grid g2" id="eu-roles"></div>
+
+      <h4 style="font-size:13.6px;font-weight:800;margin:18px 0 8px">🔍 招聘关键词（德文是主力，英文只在大城市外企有效）</h4>
+      <div id="eu-kw"></div>
+
+      <h4 style="font-size:13.6px;font-weight:800;margin:18px 0 8px">📡 投递渠道与可信度</h4>
+      <div id="eu-channels"></div>
+    </div>
+  </div>
+
+  <!-- 模块四：签证 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h">
+      <h3>模块四 · 欧洲求职：三条签证路径的真实条件</h3>
+      <span class="grow"></span>
+      <span class="pill p-warn">2026 官方口径</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 12px">
+        所有薪资门槛都是<b>税前年毛收入</b>，且<b>每年 1 月调整</b>。下面数字为 2026 年官方公布值，你执行时必须重新核对——
+        这类门槛近年一直在涨，按今年的线做的规划，三年后可能不够。
+      </p>
+      <div id="eu-visas"></div>
+    </div>
+  </div>
+
+  <!-- 国家对比 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>六国横向对比：不是「哪国好」，是「哪国进得去」</h3></div>
+    <div class="card-b">
+      <div class="grid g2" id="eu-countries"></div>
+      <div class="note" style="margin-top:12px;font-size:12.5px">
+        <b>为什么把德国放第一：</b>不只是岗位多。真正的原因是——<b>只有德国的法规里明确写了「IT 专家无学历 + 3 年经验可申请蓝卡」</b>。
+        其他国家要么明文要求学位（爱尔兰关键技能签证），要么虽然不要求学历但薪资门槛高到 Junior 岗进不去（荷兰）。
+        这是制度差异，不是努力能弥补的。
+      </div>
+    </div>
+  </div>
+
+  <!-- 模块五：学历与签证 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>模块五 · 学历说明：专科到底能不能去欧洲</h3></div>
+    <div class="card-b">
+      <div class="note ok" style="margin-bottom:12px;font-size:13px">
+        <b>直接回答：能去。但走的不是「学历通道」，是「经验通道」。</b>
+        德国的 EU Blue Card 有一个专门针对 IT 的条款：<b>没有大学学历，但过去 7 年内有 3 年 IT 专业经验，也能申请</b>。
+        这是目前对中国专科生最友好的一条欧洲移民法规，而且它是写在居留法里的明文规定，不是中介的话术。
+      </div>
+
+      <div class="tbox" style="margin-bottom:14px">
+        <table class="tb">
+          <thead>
+            <tr><th style="width:22%">路径</th><th style="width:18%">学历要求</th><th style="width:16%">经验要求</th><th style="width:22%">2026 薪资门槛</th><th>最快落地时间</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>专科 + 3 年经验</b><br><span style="font-size:11.5px;color:var(--muted)">IT 专家通道</span></td>
+              <td style="color:var(--ok)"><b>不需要</b></td>
+              <td>过去 7 年内<br>累计 3 年</td>
+              <td>€45,934.20 / 年</td>
+              <td>毕业 + 3 年<br><span style="font-size:11.5px;color:var(--muted)">约 2032 年</span></td>
+            </tr>
+            <tr>
+              <td><b>专升本 + 毕业 3 年内</b><br><span style="font-size:11.5px;color:var(--muted)">新人条款</span></td>
+              <td>需本科（德国认可）</td>
+              <td style="color:var(--ok)"><b>不需要</b></td>
+              <td>€45,934.20 / 年<br><span style="font-size:11.5px;color:var(--muted)">与 IT 专家通道同档</span></td>
+              <td>本科毕业即可<br><span style="font-size:11.5px;color:var(--muted)">约 2032—2033 年</span></td>
+            </tr>
+            <tr>
+              <td><b>常规蓝卡</b></td>
+              <td>需本科（德国认可）</td>
+              <td>无年限要求</td>
+              <td>€50,700 / 年</td>
+              <td>同上，但门槛更高</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid g2">
+        <div class="card" style="background:var(--panel-2)">
+          <div class="card-b">
+            <div style="font-size:13.4px;font-weight:800;margin-bottom:7px">✅ 走「专科 + 3 年经验」的理由</div>
+            <ul class="plain v" style="margin:0;font-size:12.6px">
+              <li>不用再读两年书，也不用交学费，还能边工作边攒钱</li>
+              <li>完全绕开学历认证问题（这条通道根本不查学历）</li>
+              <li>三年经验在国内也是实打实的职业积累，不是空耗</li>
+              <li>风险可控：万一出不去，你在国内已经有 3 年经验和一张 CCNA</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="background:var(--panel-2)">
+          <div class="card-b">
+            <div style="font-size:13.4px;font-weight:800;margin-bottom:7px">⚠️ 走「专升本」的真实取舍</div>
+            <ul class="plain" style="margin:0;font-size:12.6px">
+              <li>多花 2 年 + 学费，但拿到的是<b>永久解除学历限制</b>的资格</li>
+              <li>长期上限更高：欧洲大量中高级岗位、永居后的入籍路径都更顺</li>
+              <li>代价是晚 2 年进入职场，且专升本本身有考不上的风险</li>
+              <li>如果升的是<b>统招本科</b>，学历在 anabin 通常可评为可比；<b>自考 / 成人本科</b>的认可度明显更低</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="note warn" style="margin-top:12px;font-size:12.6px">
+        <b>三个必须自己核实的技术细节：</b>
+        ① 你的学校与学历在 <b>anabin 数据库</b>里的评级（H+ / H- / 部分可比）——这是德国官方学历认定入口；
+        ② 如果走普通工签而非 IT 专家通道，需要 <b>ZAB 认证</b>，周期约 8—12 周；
+        ③ 「3 年经验」需要雇主出具证明信，写清职责与技术栈，<b>建议在职期间就主动准备，不要离职后回头找前公司</b>。
+      </div>
+    </div>
+  </div>
+
+  <!-- 时间轴 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>七年时间轴：每个阶段必须有产出</h3></div>
+    <div class="card-b"><div class="tl" id="eu-tl"></div></div>
+  </div>
+
+  <!-- 成本 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h">
+      <h3>成本预算：从今天到落地，一共要花多少</h3>
+      <span class="grow"></span>
+      <span class="pill p-warn">不含生活开支</span>
+    </div>
+    <div class="card-b" style="padding:0">
+      <div class="tbox">
+        <table class="tb">
+          <thead><tr><th style="width:42%">项目</th><th style="width:33%">金额</th><th>时间点</th></tr></thead>
+          <tbody id="eu-costs"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险 -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h">
+      <h3>风险清单：八个会让你卡住的地方</h3>
+      <span class="grow"></span>
+      <span class="pill p-danger">先看这个再看路线</span>
+    </div>
+    <div class="card-b"><div id="eu-risks"></div></div>
+  </div>
+
+  <!-- 事实核对 -->
+  <div class="card">
+    <div class="card-h">
+      <h3>数据核对：那份方案的七条说法，我逐条查了官方口径</h3>
+      <span class="grow"></span>
+      <span class="pill p-danger">含 1 处硬伤</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 12px">
+        你给的那份方案大方向是对的，但<b>荷兰那条线的数字和当地签证法规是冲突的</b>。
+        下面左边是原话，右边是官方核实结果。这类「看起来合理但落地不了」的错误，出国规划里代价最大，所以单独列出来。
+      </p>
+      <div id="eu-fc"></div>
+    </div>
+  </div>
+
+  <p class="srcnote" id="eu-note" style="margin-top:12px"></p>
+</section>
+
+<!-- ============ 21. 全球落点 ============ -->
+<section class="blk" id="s-global">
+  <div class="sec-head">
+    <span class="eyebrow">21 / Global</span>
+    <h2>全球落点：12 国排行 + 你偏好的「网络实施」到底该去哪</h2>
+    <p>
+      这一节回答两个问题：<b>① 以你现在的条件（网络技术大专、2029 届、无工作经验），哪个国家真的进得去；② 你偏好的「网络实施」这个方向，在哪个国家最好找工作。</b>
+      两个答案不一样——这不矛盾，因为「国家好不好」和「你这个岗位在那国好不好活」是两件事。
+      所有门槛数字都标了核实状态：<span class="gl-st ok">✅ 官方已核</span> ／ <span class="gl-st warn">⚠️ 区间估算</span> ／ <span class="gl-st gray">❓ 待核</span>。
+    </p>
+  </div>
+
+  <div id="gl-hero"></div>
+
+  <!-- ===== A. 网络实施专用 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>A · 你偏好的「网络实施」：哪个国家最适合你</h3>
+      <span class="grow"></span>
+      <span class="pill p-brand">按岗位排，不按国家排</span>
+    </div>
+    <div class="card-b">
+      <div class="note" style="margin-bottom:14px;font-size:12.8px">
+        <b>先说一个反直觉的结论：</b>「网络实施」这条路在欧洲是<b>逆风</b>的，在中东是<b>顺风</b>的。
+        原因很硬：欧洲的工签门槛（德国 €3,827.85/月、荷兰 €4,357/月）比实施岗的实际薪资还高，
+        而中东的签证不看薪资门槛、只看雇主担保，实施岗的工资刚好匹配。
+        <b>这不是你能力的问题，是制度设计的问题。</b>
+      </div>
+
+      <div class="grid g3" style="margin-bottom:16px">
+        <div class="gl-box good">
+          <b>如果你的目标是「毕业就走」</b>
+          <p><b style="display:inline;font-size:13px;color:var(--ok)">日本</b> —— 软考网络工程师免学历，技人国的网络构筑岗大量缺人，唯一一条你现在就能启动的发达国家路线。</p>
+        </div>
+        <div class="gl-box">
+          <b>如果你的目标是「尽快攒钱」</b>
+          <p><b style="display:inline;font-size:13px;color:var(--brand)">阿联酋 / 沙特</b> —— 集成商和数据中心项目最多，实施岗薪资刚好够签证，英语环境，不看学历层次。但没有身份。</p>
+        </div>
+        <div class="gl-box bad">
+          <b>如果你的目标是「欧洲身份」</b>
+          <p><b style="display:inline;font-size:13px;color:var(--danger)">德国</b> —— 但别做纯实施。纯实施岗薪资贴着蓝卡门槛，很容易差几百欧办不下来。要以「网络管理员」职位进去。</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:13.4px;font-weight:850;margin:0 0 6px">这个排行用的 5 个维度（和上面的综合排行不同）</h4>
+      <div id="gl-roledims" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:9px;margin-bottom:16px"></div>
+
+      <div class="gl-roles" id="gl-roles"></div>
+
+      <div class="note warn" style="margin-top:14px;font-size:12.5px">
+        <b>怎么用这张表：</b>前 3 名（默认展开）是「现在或 3 年后真能去」的；
+        第 4 名之后不是不好，是<b>对你现在这个条件不成立</b>——要么薪资够不到签证门槛，要么学历/执照卡死。
+        点开每一条能看到：工资、签证能不能办、外语要求、技术要求、入行门槛、累不累、会不会被开、进步空间。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== B. 综合排行 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>B · 综合 12 国排行：权重你自己拖</h3>
+      <span class="grow"></span>
+      <span class="pill p-ok">实时重算</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 14px">
+        元宝那张表有 10 个维度、没有权重，所以 86 分和 82 分的差距没人能验证。
+        这里改成 <b>6 个维度 + 权重可调 + 分数实时重算</b>——你可以把「身份路径」拖到 50%，也可以把「薪资」拖到 0，看排名怎么变。
+        <b>能自己复现的排名，才算排名。</b>
+      </p>
+      <div class="gl-presets" id="gl-presets"></div>
+      <div class="gl-weights" id="gl-weights"></div>
+      <div class="gl-tabs" id="gl-tabs"></div>
+      <div class="gl-sum" id="gl-sum"></div>
+    </div>
+  </div>
+
+  <div class="gl-rank" id="gl-rank" style="margin-bottom:16px"></div>
+
+  <!-- ===== C. 核对 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>C · 元宝那张表：10 条逐项核对</h3>
+      <span class="grow"></span>
+      <span class="pill p-danger">7 条错 / 3 条半对</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 14px">
+        不是抬杠。<b>出国规划里，一个数字错了，代价是三年时间和十几万块钱。</b>
+        下面每条都写了「哪里不对」和「本页怎么改」，你可以自己拿官方原文去对。
+      </p>
+      <div class="gl-checks" id="gl-checks"></div>
+    </div>
+  </div>
+
+  <!-- ===== D. 路线 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h"><h3>D · 四条能走通的组合路线</h3></div>
+    <div class="card-b">
+      <p style="font-size:12.8px;line-height:1.74;color:var(--ink-2);margin:0 0 14px">
+        单看一个国家没有意义，要看<b>「先用哪条进，再用哪条跳」</b>。下面四条是按「落地时间 + 成本 + 风险」排的，不是按「国家名气」排的。
+      </p>
+      <div class="gl-routes" id="gl-routes"></div>
+    </div>
+  </div>
+
+  <!-- ===== E. 决策树 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>E · 一页决策树：如果你的情况是…就选…</h3>
+      <span class="grow"></span>
+      <span class="pill p-brand">点任意一行跳到对应国家</span>
+    </div>
+    <div class="card-b">
+      <div class="gl-tree" id="gl-tree"></div>
+    </div>
+  </div>
+
+  <!-- ===== F. 成本 ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>F · 落地成本表：从今天到上飞机，一共要花多少</h3>
+      <span class="grow"></span>
+      <span class="pill p-warn">按 2026 年 10 月价</span>
+    </div>
+    <div class="card-b">
+      <div class="tbox">
+        <table class="tb gl-cost" id="gl-cost">
+          <thead>
+            <tr>
+              <th>国家</th><th>前置投入</th><th>约</th><th>签证费</th><th>机票</th><th>落地首月</th><th>合计</th><th>从零到落地</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="srcnote" style="margin-top:10px">
+        说明：<b>合计</b>只算「到落地为止」的硬支出，不含生活费和中介费。「从零到落地」包含攒经验/学历/语言的时间，所以德国 3 年不是费用高，是<b>时间成本</b>高。
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== G. 校园活动 ROI ===== -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <h3>G · 入党 / 班干部 / 社团 / 活动：对出国到底有没有用</h3>
+      <span class="grow"></span>
+      <span class="pill p-danger">11 项里只有 4 项值得</span>
+    </div>
+    <div class="card-b">
+      <div class="note danger" style="margin-bottom:14px;font-size:13px">
+        <b>直接回答，不绕弯：对出国就业，入党 0 分、团支书 0 分、班委 0 分、学生会 0 分。</b>
+        不是这些东西没价值，是<b>它们在国外那条链条上没有对应的兑换口</b>——
+        德国蓝卡的表格里没有「政治面貌」这一栏，迪拜集成商的面试不问你当没当过班长，波兰的蓝卡申请只要合同、薪资、经验和无犯罪记录。
+        <b>真正能换成签证的，只有四样：语言证书、世界技能大赛、对口实习、省级以上技能竞赛。</b>
+      </div>
+
+      <p style="font-size:12.8px;line-height:1.78;color:var(--ink-2);margin:0 0 14px">
+        下面这张表按「对出国的真实价值」排序，分数 = 出国工签 45% + 海外简历 35% + 日本面试 20%。
+        右侧三个数字分别是<b>对工签 / 对海外简历 / 对日企面试</b>的 0-10 分。
+        「国内兜底价值」单独列出来，不计入总分——因为那是另一笔账。
+      </p>
+
+      <div class="gl-campus" id="gl-campus"></div>
+
+      <h4 style="font-size:13.4px;font-weight:850;margin:20px 0 6px">三条路线各自的校园策略</h4>
+      <div class="gl-routes" id="gl-camproutes" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))"></div>
+
+      <div class="note warn" style="margin-top:14px;font-size:12.5px">
+        <b>关于入党，必须说清楚三件事，不夸大也不回避：</b><br>
+        ① 党员身份<b>不会</b>让你拿不到欧美签证，但美国签证申请表（DS-160）会问到相关项，<b>如实填写</b>——隐瞒的后果远大于如实申报；<br>
+        ② 它<b>不给</b>你任何出国加分，工签、蓝卡、永居的评分表里都没有这一项；<br>
+        ③ 它对考公、国企、事业单位、专升本的思政考核是<b>真加分</b>。<br>
+        所以这不是「有用还是没用」，是<b>「你赌不赌自己会留在国内」</b>。如果你有 30% 以上概率留国内，入党是合理的保险；如果铁了心出国，这三年时间应该给日语和实验室。
+      </div>
+
+      <div class="note ok" style="margin-top:10px;font-size:12.5px">
+        <b>如果只能做四件事，就做这四件：</b>
+        ① 语言证书（日语 N2 / 德语 B1 / 雅思 6.0，三选一，别贪多）；
+        ② 软考 · 网络工程师（¥130，中文考，日本技人国免学历的钥匙）；
+        ③ CCNA + 一段能开出证明信的对口实习；
+        ④ 冲一次省级以上技能竞赛（能拿世赛资格最好，那东西直接换签证）。
+        <b>这四件做完，你的出国材料就齐了；做不完，当十年班长也没用。</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:14px;font-size:12.5px">
+    <b>两张表的关系，一句话说清：</b>综合排行告诉你「长期哪条路最值」，实施排行告诉你「你偏好的方向在哪国最吃得开」。
+    两者重叠的地方是<b>日本</b>和<b>阿联酋</b>——一个门槛最低，一个岗位最多。
+    <b>如果只能记一句：先用日本或中东把「合法海外工作经验」拿到手，再用它去换欧洲的蓝卡。</b>
+  </div>
+
+  <p class="srcnote" id="gl-fx" style="margin-top:12px"></p>
+</section>
+
+<!-- ============ 22. 岗位全景 ============ -->
+<section class="blk" id="s-jobmap">
+  <div class="sec-head">
+    <span class="eyebrow">22 / Job Map</span>
+    <h2>岗位全景：这三年学的东西，最后能换到哪些岗位</h2>
+    <p>23 个真实存在的岗位，按「大专能不能进」分成四档。每个岗位都写了干什么、什么门槛、哪张证能敲开、薪资大概多少、三年怎么准备、坑在哪。<b>点开看详情。</b></p>
+  </div>
+
+  <div class="jm-tools">
+    <div class="iqbar" id="jobmap-filter" style="margin:0"></div>
+    <span class="jm-count" id="jobmap-count"></span>
+  </div>
+  <div id="jobmap-list"></div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-h"><h3>🎖 证书 → 岗位：每张证到底打开了哪扇门</h3></div>
+    <div class="card-b"><div id="jobmap-cert"></div></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-h"><h3>🧭 按你的性格和条件，该选哪条路</h3></div>
+    <div class="card-b"><div class="grid g2" id="jobmap-choose"></div></div>
+  </div>
+
+  <div class="note warn" style="margin-top:14px;font-size:12.6px" id="jobmap-note"></div>
+</section>
+
+<!-- ============ 21. 招聘样本池 ============ -->
+<section class="blk" id="s-jobdata">
+  <div class="sec-head">
+    <span class="eyebrow">23 / Job Market</span>
+    <h2>招聘样本池：用真实 JD 决定下一阶段学什么</h2>
+    <p>这一节不提供「结论型薪资」，只提供<b>一个由你自己维护的样本库</b>。录入真实岗位（每条都记来源与采集日期），系统自动算中位数与高频技能。样本累计到 20 条以上，它比任何行业报告都准——因为它对应的正是你要投的岗位。</p>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-h"><h3>➕ 录入一条真实岗位</h3><span class="grow"></span><span class="pill p-warn">建议每月固定采集一次</span></div>
+    <div class="card-b">
+      <div class="jobform" id="job-form"></div>
+      <div class="note" style="font-size:12.5px"><b>采集要求：</b>只录招聘页面明确写出的信息；薪资写区间时填下限与上限；「来源」写明平台或企业官网；采集日期必须真实。信息不全的岗位不录，宁缺勿滥。</div>
+    </div>
+  </div>
+  <div class="jstat" id="job-stat"></div>
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card">
+      <div class="card-h"><h3>📊 高频技能（按样本出现次数）</h3></div>
+      <div class="card-b"><div class="skillfreq" id="job-skill"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h3>🧭 这份数据怎么用</h3></div>
+      <div class="card-b">
+        <ul class="plain">
+          <li>出现频次最高的 3 项技能，就是下个学期的主攻方向</li>
+          <li>连续两个月没人要求的技能，可以暂时降优先级</li>
+          <li>同一城市薪资上下限差距过大，说明职责差异大，要看清 JD 再判断</li>
+          <li>记录「证书要求」一栏，能直接看出这个城市认不认证书</li>
+          <li>每季度对比一次，看要求是在升高还是降低</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-h"><h3>🗂 样本列表</h3><span class="grow"></span>
+      <div class="chips" id="job-filter"></div>
+      <button class="btn gray" id="job-clear" style="padding:5px 11px;font-size:12px">清空</button>
+    </div>
+    <div class="card-b" style="padding:0">
+      <div class="tbox"><table class="tb"><thead><tr><th>城市</th><th>岗位</th><th>学历</th><th>经验</th><th>薪资</th><th>技能要求</th><th>证书</th><th>采集日期</th><th></th></tr></thead><tbody id="job-table"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 20. 面试题库 ============ -->
+<section class="blk" id="s-interview">
+  <div class="sec-head">
+    <span class="eyebrow">24 / Interview</span>
+    <h2>面试题库：常见问题与参考答案</h2>
+    <p>按模块分类，共 32 道。每题都附了<b>「可能被追问」</b>——面试的真正难点不在第一问，而在第二问。点击题目展开答案。</p>
+  </div>
+  <div class="iqbar" id="iq-bar"></div>
+  <div id="iq-list"></div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-h"><h3>📌 面试五条铁律</h3></div>
+    <div class="card-b"><ul class="plain" id="iq-tips"></ul></div>
+  </div>
+</section>
+
+<!-- ============ 21. 简历与谈薪 ============ -->
+<section class="blk" id="s-resume">
+  <div class="sec-head">
+    <span class="eyebrow">25 / Resume</span>
+    <h2>简历与谈薪：把做过的事说清楚</h2>
+    <p>简历的本质不是「证明你优秀」，而是<b>让面试官在 15 秒内判断你干过什么</b>。谈薪的本质不是「要高价」，而是把所有条件谈成一揽子方案。</p>
+  </div>
+  <div class="rt-wrap">
+    <div id="resume-blocks"></div>
+    <div class="rt-side">
+      <div class="card">
+        <div class="card-h"><h3>✅ Offer 必查七问</h3></div>
+        <div class="card-b"><ul class="plain" id="offer-check"></ul></div>
+      </div>
+      <div class="note danger" style="margin-top:12px;font-size:12.5px">
+        <b>签字前：</b>口头承诺一律要求写进合同或补充协议。违约金条款、试用期时长、服务期约定，是三个最容易出事的地方。
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-h"><h3>🔁 同一件事，两种写法</h3><span class="grow"></span><span class="pill p-ok">左：没人看　右：会被追问</span></div>
+    <div class="card-b" style="padding:0" ><div id="resume-bad"></div></div>
+  </div>
+  <div style="margin-top:16px">
+    <div style="font-size:14.5px;font-weight:800;margin-bottom:10px">💬 谈薪五问：怎么问、怎么答</div>
+    <div id="nego"></div>
+  </div>
+</section>
+
+<!-- ============ 22. 周计划与复盘 ============ -->
+<section class="blk" id="s-week">
+  <div class="sec-head">
+    <span class="eyebrow">26 / Weekly</span>
+    <h2>周计划与复盘：把「看起来在学」变成「确实学到」</h2>
+    <p>勾选「已掌握」很容易产生虚假进度。<b>只有产出交付物的任务才算完成</b>。这一节按周管理任务并生成可复制的复盘报告，判断标准始终是同一个：这周产出了什么能拿给别人看的东西。</p>
+  </div>
+  <div class="card">
+    <div class="card-b">
+      <div class="week-grid">
+        <div class="week-panel">
+          <div class="week-panel-h">任务池<span style="flex:1"></span><span style="font-weight:600;color:var(--muted);font-size:11.5px">勾选即加入本周</span></div>
+          <div class="week-panel-b">
+            <div class="chips" id="week-pool-btns" style="margin-bottom:10px"></div>
+            <div id="week-pool-list"></div>
+          </div>
+        </div>
+        <div class="week-panel">
+          <div class="week-panel-h">本周清单</div>
+          <div class="week-panel-b" id="week-list"></div>
+        </div>
+      </div>
+      <div class="week-stats" id="week-stats"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn" id="week-report-btn" style="padding:7px 14px;font-size:12.5px">生成本周复盘</button>
+        <button class="btn ghost" id="week-copy" style="padding:7px 14px;font-size:12.5px">复制周报</button>
+        <button class="btn gray" id="week-clear" style="padding:7px 14px;font-size:12.5px">清空本周</button>
+      </div>
+      <div class="week-report" id="week-report"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 23. 作息与预算 ============ -->
+<section class="blk" id="s-routine">
+  <div class="sec-head">
+    <span class="eyebrow">27 / Routine</span>
+    <h2>作息、时间分配与三年预算</h2>
+    <p>长期作战靠的是节奏，不是爆发。<b>下面这套作息不激进，但能持续三年</b>——比「每天学 12 小时然后崩掉」有用得多。</p>
+  </div>
+  <div class="rt-wrap">
+    <div id="routine-list"></div>
+    <div class="rt-side" id="routine-plan"></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-h"><h3>💰 三年现金支出预算</h3><span class="grow"></span><span class="pill p-brand">按目标取舍，不是每项都要花</span></div>
+    <div class="card-b" id="budget"></div>
+  </div>
+</section>
+
+<!-- ============ 24. 自检 ============ -->
 <section class="blk" id="s-toolbox">
   <div class="sec-head">
-    <span class="eyebrow">11 / Toolbox</span>
+    <span class="eyebrow">28 / Toolbox</span>
     <h2>工具箱：倒计时 + 自检清单</h2>
     <p>清单勾选状态保存在本机浏览器（localStorage），换设备不同步，建议定期截图留存。</p>
   </div>
@@ -381,10 +1193,28 @@
   </div>
 </section>
 
-<!-- ============ 12. 资源 ============ -->
+<!-- ============ 25. 数据来源 ============ -->
+<section class="blk" id="s-sources">
+  <div class="sec-head">
+    <span class="eyebrow">29 / Sources</span>
+    <h2>数据来源与可信度：哪些能直接用，哪些得自己核</h2>
+    <p>本页所有数字都被标注了状态：<b>已核实</b>（有官方链接与日期）、<b>待核实</b>（有出处但缺日期或口径）、<b>估算</b>（不确定区间）。凡是「待核实」与「估算」项，只能用于判断趋势方向，<b>不能当作事实引用</b>。</p>
+  </div>
+  <div class="jstat" id="src-stat" style="margin-bottom:14px"></div>
+  <div class="card">
+    <div class="card-b" style="padding:0">
+      <div class="tbox"><table class="tb"><thead><tr><th style="min-width:240px">数据点</th><th>来源机构</th><th>日期</th><th>统计口径</th><th>状态</th><th>链接</th></tr></thead><tbody id="src-table"></tbody></table></div>
+    </div>
+  </div>
+  <div class="note danger" style="margin-top:14px">
+    <b>本页的处理原则：</b>找不到可靠出处的数字，标注为估算或直接删除，<b>不写成确定事实</b>。薪资、招聘增长、证书价值、升学录取率这四类尤其不能混用——不同年份、不同地区、不同口径的数字放在一起比较，会得出完全错误的结论。
+  </div>
+</section>
+
+<!-- ============ 26. 资源 ============ -->
 <section class="blk" id="s-res">
   <div class="sec-head">
-    <span class="eyebrow">12 / Resources</span>
+    <span class="eyebrow">30 / Resources</span>
     <h2>资源库：官方入口与常用工具</h2>
     <p>只列官方与高频使用的。凡是要求“先交钱再看资料”的，一律绕开。</p>
   </div>
@@ -398,11 +1228,33 @@
   </div>
 </section>
 
+<!-- ============ 27. 避坑 ============ -->
+<section class="blk" id="s-pitfall">
+  <div class="sec-head">
+    <span class="eyebrow">31 / Pitfalls</span>
+    <h2>14 个高危坑：踩一个可能浪费一整年</h2>
+    <p>这些是往届学生最常犯的错误。<span class="pill p-danger">红色 = 高危</span>，会直接导致时间或金钱的重大损失。</p>
+  </div>
+  <div class="grid g2" id="pitfalls"></div>
+</section>
+
+<!-- ============ 28. 常见问题 ============ -->
+<section class="blk" id="s-faq">
+  <div class="sec-head">
+    <span class="eyebrow">32 / FAQ</span>
+    <h2>常见问题：那些没人直说的事</h2>
+    <p>20 个真实会遇到的困惑，按主题筛选。<b>答案不一定好听，但都是可以执行的建议</b>。</p>
+  </div>
+  <div class="iqbar" id="faq-bar"></div>
+  <div id="faq-list"></div>
+</section>
+
+
 </main>
 
 <footer class="ft">
   <div class="ft-in">
-    <p style="margin:0 0 8px"><b>计算机网络技术（510202）三年作战地图</b> · 日照科技职业学院信息工程学院</p>
+    <p style="margin:0 0 8px"><b>计算机网络技术 · 三年作战地图</b></p>
     <p style="margin:0 0 8px">
       内容基于公开资料整理：学校官网专业介绍、教育部 1+X 证书制度、华为人才在线认证说明、
       计算机技术与软件专业技术资格考试安排、山东省普通高等教育专科升本科考试招生工作通知、
@@ -415,11 +1267,26 @@
   </div>
 </footer>
 
+<!-- 浮动目录 -->
+<div class="totop" id="totop">↑</div>
+<div id="tocfab" title="目录">≡</div>
+<div id="tocpanel"></div>
+
 <!-- 移动底部导航 -->
 <nav class="mnav"><div class="mnav-in" id="mnav"></div></nav>
-<div class="totop" id="totop">↑</div>
 
 <script src="assets/data.js"></script>
+<script src="assets/data2.js"></script>
+<script src="assets/data3.js"></script>
+<script src="assets/data4.js"></script>
+<script src="assets/data5.js"></script>
+<script src="assets/data6.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/app2.js"></script>
+<script src="assets/app3.js"></script>
+<script src="assets/app5.js"></script>
+<script src="assets/app4.js"></script>
+<script src="assets/app6.js"></script>
+<script src="assets/app7.js"></script>
 </body>
 </html>

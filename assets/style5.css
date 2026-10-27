@@ -1,0 +1,510 @@
+/* ============================================================================
+   style5.css —— 欧洲路线模块（阶段指示器 / 证书星级 / 清单勾选 / 签证对比）
+   加载顺序：style.css → style2.css → style3.css → style4.css → style5.css
+   全部沿用既有设计令牌，深浅色自动继承
+   ============================================================================ */
+
+/* ==========================================================================
+   一、阶段指示器
+   ========================================================================== */
+.eu-stepbar {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 14px 16px 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+.eu-sb-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px; flex-wrap: wrap;
+}
+.eu-sb-title { font-size: 13px; font-weight: 800; color: var(--ink); letter-spacing: .2px; }
+.eu-sb-hint { font-size: 11.5px; color: var(--muted-2); margin-left: auto; }
+
+.eu-stepper {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.eu-st {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding: 0 2px 4px;
+  background: none; border: 0; cursor: pointer;
+  font-family: inherit; color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 连接线 */
+.eu-st::before {
+  content: ""; position: absolute; top: 13px; left: 50%;
+  width: 100%; height: 2px; background: var(--line);
+  z-index: -1; transition: background .3s;
+}
+.eu-st:last-child::before { display: none; }
+.eu-st.done::before { background: var(--ok); opacity: .55; }
+
+/* 圆点 */
+.eu-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 11.5px; font-weight: 850;
+  background: var(--panel-2); color: var(--muted-2);
+  border: 2px solid var(--line-2);
+  transition: transform .22s var(--m4-ease), background .22s, border-color .22s, color .22s, box-shadow .22s;
+}
+.eu-st.done .eu-dot {
+  background: var(--ok-soft); color: var(--ok); border-color: var(--ok);
+}
+.eu-st.on .eu-dot {
+  background: linear-gradient(135deg, var(--brand), #3b6df0);
+  color: #fff; border-color: transparent;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, .14), 0 6px 16px -6px rgba(29, 78, 216, .6);
+  transform: scale(1.1);
+}
+
+.eu-st-t {
+  font-size: 12px; font-weight: 780; color: var(--muted);
+  line-height: 1.2; text-align: center;
+  transition: color .2s;
+}
+.eu-st.on .eu-st-t { color: var(--brand); }
+.eu-st.done .eu-st-t { color: var(--ok); }
+
+.eu-st-s {
+  font-size: 10px; color: var(--muted-2); line-height: 1.25;
+  text-align: center; font-variant-numeric: tabular-nums;
+}
+
+/* 阶段详情 */
+.eu-stage {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--panel); overflow: hidden;
+  animation: euIn .26s var(--m4-ease);
+}
+@keyframes euIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+.eu-stage-h {
+  padding: 13px 16px;
+  background: linear-gradient(135deg, var(--brand-soft), transparent 70%);
+  border-bottom: 1px solid var(--line);
+}
+.eu-stage-h b { font-size: 15px; font-weight: 820; color: var(--ink); display: block; }
+.eu-stage-h small { font-size: 11.8px; color: var(--muted); display: block; margin-top: 3px; }
+
+.eu-stage-b { padding: 13px 16px 15px; }
+.eu-stage-goal {
+  font-size: 13.2px; line-height: 1.72; color: var(--ink-2);
+  padding: 9px 12px; border-radius: 9px; background: var(--panel-2);
+  border-left: 3px solid var(--brand); margin-bottom: 12px;
+}
+.eu-stage-goal b { color: var(--brand); }
+
+.eu-stage-list { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 7px; }
+.eu-stage-list li {
+  position: relative; padding-left: 22px;
+  font-size: 12.9px; line-height: 1.68; color: var(--ink-2);
+}
+.eu-stage-list li::before {
+  content: ""; position: absolute; left: 5px; top: 7px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--brand); opacity: .75;
+}
+
+.eu-stage-warn {
+  font-size: 12.4px; line-height: 1.7;
+  color: var(--danger); background: var(--danger-soft);
+  border-radius: 9px; padding: 9px 12px;
+}
+.eu-stage-warn b { display: block; font-size: 11px; letter-spacing: .4px; margin-bottom: 3px; opacity: .85; }
+
+/* ==========================================================================
+   二、总进度
+   ========================================================================== */
+.eu-prog {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--panel); padding: 12px 16px; margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.eu-ring {
+  --p: 0;
+  width: 52px; height: 52px; border-radius: 50%; flex: none;
+  background: conic-gradient(var(--brand) calc(var(--p) * 1%), var(--line) 0);
+  display: grid; place-items: center; position: relative;
+  transition: background .4s;
+}
+.eu-ring::after {
+  content: ""; position: absolute; inset: 5px; border-radius: 50%;
+  background: var(--panel);
+}
+.eu-ring-t {
+  position: relative; z-index: 1;
+  font-size: 12.5px; font-weight: 850; color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+.eu-prog-txt { flex: 1; min-width: 140px; }
+.eu-prog-txt b { display: block; font-size: 13px; font-weight: 780; color: var(--ink); }
+.eu-prog-txt small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+.eu-prog-reset {
+  font-family: inherit; font-size: 11.5px; font-weight: 700;
+  color: var(--muted); background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: 7px;
+  padding: 5px 11px; cursor: pointer; transition: all .18s;
+}
+.eu-prog-reset:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+
+/* ==========================================================================
+   三、证书卡 + 星级
+   ========================================================================== */
+.eu-cert {
+  border: 1px solid var(--line); border-radius: 13px;
+  background: var(--panel); margin-bottom: 9px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+  transition: border-color .2s, box-shadow .24s;
+}
+.eu-cert:hover { box-shadow: var(--m4-lift, 0 8px 24px -12px rgba(15,23,42,.2)); }
+.eu-cert.must { border-left: 3px solid var(--danger); }
+.eu-cert.rec { border-left: 3px solid var(--brand); }
+.eu-cert.opt { border-left: 3px solid var(--line-2); }
+.eu-cert.dom { border-left: 3px solid var(--warn); }
+
+.eu-c-h {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 13px; cursor: pointer;
+  transition: background .14s;
+}
+.eu-c-h:hover { background: var(--bg-soft); }
+.eu-c-main { flex: 1; min-width: 0; }
+.eu-c-n {
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+.eu-c-n b { font-size: 14px; font-weight: 820; color: var(--ink); }
+.eu-c-n code {
+  font-size: 10.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--muted); background: var(--bg-soft);
+  padding: 1px 5px; border-radius: 4px;
+}
+.eu-c-full { font-size: 11.2px; color: var(--muted-2); line-height: 1.45; margin-bottom: 5px; }
+.eu-c-meta {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 11.2px; color: var(--muted);
+}
+.eu-c-meta span { white-space: nowrap; }
+
+/* 星级 */
+.eu-star { display: inline-flex; gap: 1px; font-size: 12px; line-height: 1; }
+.eu-star i { font-style: normal; color: var(--line-2); }
+.eu-star i.on { color: var(--warn); }
+
+/* 档位徽标 */
+.eu-tier {
+  font-size: 10px; font-weight: 850; letter-spacing: .3px;
+  padding: 2px 7px; border-radius: 5px; white-space: nowrap;
+}
+.eu-tier.must { background: var(--danger-soft); color: var(--danger); }
+.eu-tier.rec { background: var(--brand-soft); color: var(--brand); }
+.eu-tier.opt { background: var(--bg-soft); color: var(--muted); }
+.eu-tier.dom { background: var(--warn-soft); color: var(--warn); }
+
+/* 欧洲认可度条 */
+.eu-eu {
+  display: inline-flex; align-items: center; gap: 4px; margin-left: 2px;
+  font-size: 10.5px; font-weight: 700; color: var(--muted);
+}
+.eu-eu-bars { display: inline-flex; gap: 2px; }
+.eu-eu-bars i {
+  width: 4px; height: 10px; border-radius: 1px;
+  background: var(--line-2); opacity: .5;
+}
+.eu-eu-bars i.on { background: var(--ok); opacity: 1; }
+
+.eu-c-c {
+  flex: none; width: 8px; height: 8px; margin: 6px 4px 0 2px;
+  border-right: 2px solid var(--muted-2); border-bottom: 2px solid var(--muted-2);
+  border-radius: 1px; transform: rotate(45deg);
+  transition: transform .24s var(--m4-ease), border-color .2s;
+}
+.eu-cert.open .eu-c-c { transform: rotate(-135deg); border-color: var(--brand); }
+
+.eu-c-b { display: none; padding: 0 13px 13px; }
+.eu-cert.open .eu-c-b { display: block; animation: euIn .22s var(--m4-ease); }
+
+.eu-c-why {
+  font-size: 12.8px; line-height: 1.74; color: var(--ink-2);
+  margin: 0 0 10px; padding: 9px 11px;
+  background: var(--panel-2); border-radius: 8px;
+}
+.eu-c-dl { margin: 0; display: grid; gap: 0; }
+.eu-c-dl dt {
+  font-size: 10.3px; font-weight: 850; color: var(--muted-2);
+  letter-spacing: .4px; padding: 7px 0 2px;
+  border-top: 1px dashed var(--line);
+}
+.eu-c-dl dt:first-child { border-top: 0; padding-top: 0; }
+.eu-c-dl dd { margin: 0; font-size: 12.5px; line-height: 1.7; color: var(--ink-2); }
+.eu-c-dl dt.w { color: var(--warn); }
+.eu-c-dl dd.w { color: var(--warn); }
+.eu-c-ms {
+  margin-top: 9px; font-size: 12.2px; line-height: 1.65;
+  color: var(--ok); background: var(--ok-soft);
+  border-radius: 8px; padding: 8px 11px;
+}
+.eu-c-ms b { font-size: 10.3px; letter-spacing: .4px; display: block; margin-bottom: 2px; opacity: .85; }
+
+/* ==========================================================================
+   四、清单勾选
+   ========================================================================== */
+.eu-check { border-bottom: 1px dashed var(--line); padding: 10px 0; }
+.eu-check:last-child { border-bottom: 0; }
+.eu-check-l {
+  display: flex; align-items: flex-start; gap: 10px;
+  cursor: pointer; user-select: none;
+}
+.eu-check-l input { position: absolute; opacity: 0; width: 0; height: 0; }
+.eu-box {
+  flex: none; width: 18px; height: 18px; margin-top: 1px;
+  border: 2px solid var(--line-2); border-radius: 5px;
+  display: grid; place-items: center;
+  transition: all .2s var(--m4-ease);
+  background: var(--panel);
+}
+.eu-box::after {
+  content: ""; width: 9px; height: 5px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) scale(0); transform-origin: center;
+  transition: transform .18s var(--m4-ease);
+  margin-top: -2px;
+}
+.eu-check-l input:checked + .eu-box {
+  background: var(--ok); border-color: var(--ok);
+  box-shadow: 0 2px 8px -2px rgba(15, 157, 88, .5);
+}
+.eu-check-l input:checked + .eu-box::after { transform: rotate(-45deg) scale(1); }
+.eu-check-l input:focus-visible + .eu-box { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.eu-check-txt { flex: 1; min-width: 0; }
+.eu-check-txt b {
+  display: block; font-size: 13.2px; font-weight: 780;
+  color: var(--ink); line-height: 1.45; transition: color .2s;
+}
+.eu-check-txt p {
+  margin: 3px 0 0; font-size: 12.3px; line-height: 1.68;
+  color: var(--muted); transition: color .2s;
+}
+.eu-check-txt .eu-out {
+  display: inline-block; margin-top: 5px;
+  font-size: 11.2px; font-weight: 700;
+  color: var(--ok); background: var(--ok-soft);
+  padding: 2px 8px; border-radius: 5px;
+}
+.eu-check-txt .eu-when {
+  display: inline-block; margin-top: 5px; margin-left: 5px;
+  font-size: 11px; color: var(--muted-2);
+}
+.eu-check.done .eu-check-txt b { color: var(--muted-2); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.eu-check.done .eu-check-txt p { color: var(--muted-2); }
+.eu-check.done .eu-out { background: var(--bg-soft); color: var(--muted-2); }
+
+.eu-gtag {
+  display: inline-block; font-size: 9.8px; font-weight: 850;
+  letter-spacing: .4px; padding: 1px 6px; border-radius: 4px;
+  background: var(--brand-soft); color: var(--brand);
+  margin-right: 6px; vertical-align: 1px;
+}
+.eu-hard {
+  display: inline-block; font-size: 9.8px; font-weight: 850;
+  padding: 1px 6px; border-radius: 4px;
+  background: var(--warn-soft); color: var(--warn);
+  margin-left: 4px; vertical-align: 1px;
+}
+
+/* ==========================================================================
+   五、签证路径 / 国家对比
+   ========================================================================== */
+.eu-visa {
+  border: 1px solid var(--line); border-radius: 13px;
+  background: var(--panel); padding: 13px 15px; margin-bottom: 10px;
+  position: relative;
+}
+.eu-visa.best {
+  border-color: color-mix(in srgb, var(--ok) 40%, var(--line));
+  box-shadow: 0 0 0 3px var(--ok-soft);
+}
+.eu-visa-h {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.eu-visa-h b { font-size: 14px; font-weight: 820; color: var(--ink); }
+.eu-visa-flag {
+  font-size: 10px; font-weight: 850; padding: 2px 7px; border-radius: 5px;
+  background: var(--bg-soft); color: var(--muted);
+}
+.eu-visa-best {
+  font-size: 10px; font-weight: 850; padding: 2px 7px; border-radius: 5px;
+  background: var(--ok); color: #fff; letter-spacing: .3px;
+}
+.eu-visa-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 16px; margin-bottom: 8px;
+}
+.eu-vg { font-size: 12.3px; line-height: 1.6; min-width: 0; }
+.eu-vg em {
+  display: block; font-style: normal; font-size: 10.2px;
+  font-weight: 850; color: var(--muted-2); letter-spacing: .3px;
+  margin-bottom: 1px;
+}
+.eu-vg span { color: var(--ink-2); }
+.eu-vg.key span { color: var(--brand); font-weight: 750; }
+.eu-visa-note {
+  font-size: 12.2px; line-height: 1.7; color: var(--muted);
+  border-top: 1px dashed var(--line); padding-top: 8px;
+}
+.eu-visa.best .eu-visa-note { color: var(--ok); }
+
+/* 国家卡 */
+.eu-cty {
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel); padding: 12px 14px;
+}
+.eu-cty-h {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 7px;
+}
+.eu-cty-h b { font-size: 14.5px; font-weight: 820; color: var(--ink); }
+.eu-cty-f { font-size: 11.5px; letter-spacing: 1px; color: var(--warn); }
+.eu-cty-fit {
+  margin-left: auto; font-size: 10px; font-weight: 850;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--brand-soft); color: var(--brand);
+}
+.eu-cty-row { font-size: 12.3px; line-height: 1.68; color: var(--ink-2); margin-bottom: 5px; }
+.eu-cty-row em {
+  font-style: normal; font-size: 10.2px; font-weight: 850;
+  color: var(--muted-2); letter-spacing: .3px; margin-right: 6px;
+}
+.eu-cty-row.p { color: var(--ok); }
+.eu-cty-row.c { color: var(--danger); }
+
+/* ==========================================================================
+   六、事实核对
+   ========================================================================== */
+.eu-fc {
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel); padding: 12px 14px; margin-bottom: 9px;
+}
+.eu-fc.ok { border-left: 3px solid var(--ok); }
+.eu-fc.warn { border-left: 3px solid var(--warn); background: color-mix(in srgb, var(--warn-soft) 40%, var(--panel)); }
+.eu-fc.bad { border-left: 3px solid var(--danger); background: color-mix(in srgb, var(--danger-soft) 45%, var(--panel)); }
+
+.eu-fc-h { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; }
+.eu-fc-q { flex: 1; font-size: 13.2px; line-height: 1.55; color: var(--ink); font-weight: 700; }
+.eu-fc-q::before { content: "原文 "; font-size: 10px; font-weight: 850; color: var(--muted-2); letter-spacing: .3px; }
+.eu-fc-v {
+  flex: none; font-size: 10px; font-weight: 850; letter-spacing: .3px;
+  padding: 2px 8px; border-radius: 5px; white-space: nowrap;
+}
+.eu-fc.ok .eu-fc-v { background: var(--ok-soft); color: var(--ok); }
+.eu-fc.warn .eu-fc-v { background: var(--warn-soft); color: var(--warn); }
+.eu-fc.bad .eu-fc-v { background: var(--danger); color: #fff; }
+
+.eu-fc-real {
+  font-size: 12.4px; line-height: 1.72; color: var(--ink-2);
+  padding: 8px 10px; border-radius: 7px; background: var(--panel-2);
+  margin-bottom: 7px;
+}
+.eu-fc-real::before {
+  content: "核实结果"; display: block;
+  font-size: 10px; font-weight: 850; color: var(--muted-2);
+  letter-spacing: .3px; margin-bottom: 2px;
+}
+.eu-fc-fix {
+  font-size: 12.2px; line-height: 1.7; color: var(--muted);
+}
+.eu-fc-fix::before {
+  content: "怎么处理"; display: block;
+  font-size: 10px; font-weight: 850; color: var(--muted-2);
+  letter-spacing: .3px; margin-bottom: 2px;
+}
+.eu-fc.bad .eu-fc-fix { color: var(--danger); }
+
+/* ==========================================================================
+   七、成本表 / 风险
+   ========================================================================== */
+.eu-risk {
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel); padding: 11px 14px; margin-bottom: 8px;
+}
+.eu-risk-h { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.eu-risk-h b { font-size: 13px; font-weight: 790; color: var(--ink); flex: 1; }
+.eu-risk-lv {
+  font-size: 10px; font-weight: 850; padding: 1px 7px; border-radius: 4px; white-space: nowrap;
+}
+.eu-risk-lv.h { background: var(--danger); color: #fff; }
+.eu-risk-lv.m { background: var(--warn-soft); color: var(--warn); }
+.eu-risk-lv.l { background: var(--bg-soft); color: var(--muted); }
+.eu-risk p { margin: 0 0 5px; font-size: 12.3px; line-height: 1.68; color: var(--ink-2); }
+.eu-risk .fix {
+  font-size: 12.2px; line-height: 1.65; color: var(--ok);
+  background: var(--ok-soft); border-radius: 7px; padding: 6px 9px;
+}
+.eu-risk .fix b { font-size: 10px; letter-spacing: .3px; display: block; margin-bottom: 1px; opacity: .85; }
+
+/* 关键词小卡 */
+.eu-kw {
+  display: inline-flex; flex-direction: column; gap: 1px;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 6px 10px; background: var(--panel-2); margin: 0 6px 6px 0;
+}
+.eu-kw b { font-size: 12px; font-weight: 780; color: var(--ink); }
+.eu-kw span { font-size: 10.8px; color: var(--muted); }
+
+/* 渠道 */
+.eu-ch {
+  display: grid; grid-template-columns: minmax(140px, 190px) 1fr auto;
+  gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line);
+  font-size: 12.5px; align-items: start;
+}
+.eu-ch:last-child { border-bottom: 0; }
+.eu-ch b { font-weight: 780; color: var(--ink); }
+.eu-ch b small { display: block; font-weight: 600; font-size: 10.8px; color: var(--muted-2); margin-top: 1px; }
+.eu-ch p { margin: 0; color: var(--ink-2); line-height: 1.66; }
+
+/* ==========================================================================
+   八、响应式
+   ========================================================================== */
+@media (max-width: 860px) {
+  .eu-stepbar { padding: 12px 12px 10px; }
+  .eu-stepper { grid-template-columns: repeat(4, 1fr); }
+  .eu-st-t { font-size: 11px; }
+  .eu-st-s { display: none; }
+  .eu-dot { width: 26px; height: 26px; font-size: 10.5px; }
+  .eu-st::before { top: 12px; }
+
+  .eu-visa-grid { grid-template-columns: 1fr; gap: 6px; }
+  /* 窄屏：标题与「必用/常用」同排，说明文字独占一行 */
+  .eu-ch { grid-template-columns: 1fr auto; gap: 3px 8px; }
+  .eu-ch b { grid-column: 1; grid-row: 1; display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; min-width: 0; }
+  .eu-ch b small { display: inline; margin: 0; }
+  .eu-ch > .pill { grid-column: 2; grid-row: 1; justify-self: end; align-self: start; }
+  .eu-ch p { grid-column: 1 / -1; grid-row: 2; }
+  .eu-sb-hint { width: 100%; margin-left: 0; }
+}
+
+@media (max-width: 420px) {
+  .eu-st-t { font-size: 10.5px; }
+  .eu-c-meta { font-size: 10.8px; gap: 6px; }
+  .eu-cert .eu-eu { display: none; }
+}
+
+/* 打印 */
+@media print {
+  .eu-check, .eu-fc, .eu-risk, .eu-cert, .eu-visa, .eu-cty {
+    break-inside: avoid;
+  }
+  .eu-c-b { display: block !important; }
+  .eu-prog-reset { display: none; }
+  .eu-ring { background: var(--line) !important; }
+}
